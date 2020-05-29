@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Bin&#39;s Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Bin&#39;s Hexo">
+<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:site_name" content="Bin&#39;s Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="bin">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Bin&#39;s Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Bin&#39;s Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-BUG记录(持续更新)" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/29/BUG%E8%AE%B0%E5%BD%95(%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0)/" class="article-date">
+  <time datetime="2020-05-29T06:50:26.000Z" itemprop="datePublished">2020-05-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/29/BUG%E8%AE%B0%E5%BD%95(%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0)/">BUG记录(持续更新)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/05/29/BUG%E8%AE%B0%E5%BD%95(%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0)/" data-id="ckas050ta0003c3lefaua9ndt" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-原型链(持续更新)" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/29/%E5%8E%9F%E5%9E%8B%E9%93%BE(%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0)/" class="article-date">
+  <time datetime="2020-05-29T06:32:21.000Z" itemprop="datePublished">2020-05-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/29/%E5%8E%9F%E5%9E%8B%E9%93%BE(%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0)/">原型链(持续更新)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="https://www.jianshu.com/p/686b61c4a43d" target="_blank" rel="noopener">参考</a></p>
+<h2 id="通用规则"><a href="#通用规则" class="headerlink" title="通用规则"></a>通用规则</h2><ul>
+<li><code>对象</code>有 <code>__proto__</code> 属性 <code>函数</code>有<code>prototype</code>属性</li>
+<li><code>对象</code>由<code>函数</code>生成</li>
+<li>生成<code>对象</code>时，<code>对象</code>的<code>__proto__</code>属性指向<code>函数</code>的<code>prototype</code>属性</li>
+<li>万物皆对象，<code>函数</code>也有<code>__proto__</code>属性</li>
+</ul>
+<ol>
+<li><p>一般情况</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// 创建空对象时，实际上我们是用Object函数来生成对象的：</span><br><span class="line">var o = &#123;&#125;</span><br><span class="line">o.__proto__ === Object.prototype // <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">// 我们也可以显式的使用Object函数来创建对象：</span><br><span class="line">var o = new Object()</span><br><span class="line">o.__proto__ === Object.prototype // <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">// 当我们使用函数来创建自定义的对象时，上面的规则同样适用：</span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">Myobjcet</span></span>() &#123;&#125;</span><br><span class="line">var mo = new Myobjcet()</span><br><span class="line">mo.__proto__ === Myobjcet.prototype // <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>函数对象</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// 函数对象都是由Function函数生成的：</span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">fn</span></span>() &#123;&#125;</span><br><span class="line">fn.__proto__ === Function.prototype // <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">// Function函数本身作为对象时，生成它的函数是他自身！</span><br><span class="line">Funtion.__proto__ === Function.prototype // <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">// Object函数既然是函数，那生成它的函数自然是Function函数咯：</span><br><span class="line">Object.__proto__ === Function.prototype // <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>prototype属性</p>
+</li>
+</ol>
+<ul>
+<li><code>对象</code>的<code>__proto__</code>属性是从生成它的<code>函数</code>的<code>prototype</code>那里得来的，那我们不禁要问，<code>函数</code>的<code>prototype</code>又是谁？<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 一般函数默认的prototype是系统自动生成的一个对象：</span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">fn</span></span>()&#123;&#125;</span><br><span class="line">typeof fn.prototype // <span class="string">"object"</span></span><br><span class="line"></span><br><span class="line">fn.prototype</span><br><span class="line">&#123;constructor: ƒ&#125;</span><br><span class="line">    constructor: ƒ fn()</span><br><span class="line">    __proto__: Object</span><br><span class="line"></span><br><span class="line">fn.prototype.constructor === fn // <span class="literal">true</span></span><br><span class="line">fn.prototype.__proto__ === Object.prototype // <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol start="4">
+<li>特殊情况</li>
+</ol>
+<ul>
+<li>Object.prototype<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">typeof Object.prototype // <span class="string">"object"</span></span><br><span class="line">&gt;Object.prototype</span><br><span class="line">&#123;constructor: ƒ, __defineGetter__: ƒ, __defineSetter__: ƒ, hasOwnProperty: ƒ, __lookupGetter__: ƒ, …&#125;</span><br><span class="line">  constructor: ƒ Object()</span><br><span class="line">  hasOwnProperty: ƒ hasOwnProperty()</span><br><span class="line">  isPrototypeOf: ƒ isPrototypeOf()</span><br><span class="line">  propertyIsEnumerable: ƒ propertyIsEnumerable()</span><br><span class="line">  toLocaleString: ƒ toLocaleString()</span><br><span class="line">  toString: ƒ toString()</span><br><span class="line">  valueOf: ƒ valueOf()</span><br><span class="line">  __defineGetter__: ƒ __defineGetter__()</span><br><span class="line">  __defineSetter__: ƒ __defineSetter__()</span><br><span class="line">  __lookupGetter__: ƒ __lookupGetter__()</span><br><span class="line">  __lookupSetter__: ƒ __lookupSetter__()</span><br><span class="line">  get __proto__: ƒ __proto__()</span><br><span class="line">  <span class="built_in">set</span> __proto__: ƒ __proto__()</span><br></pre></td></tr></table></figure>
+可以看到Object函数的prototype属性也是一个类型为”object”的对象，但和一般函数的默认prototype属性不一样的是，它多了一大堆方法，这些方法都是JavaScript对象的系统默认方法 但是Object函数的prototype属性里没有<strong>proto</strong>属性</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Object.prototype.__proto__  // null</span><br></pre></td></tr></table></figure>
+<p>这就是Object函数特殊情况了：Object.prototype.<strong>proto</strong> === null，这就是JavaScript原型链的终点了</p>
+<ul>
+<li><p>Function.prototype</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">typeof Funtion.prototype // <span class="string">"function"</span></span><br><span class="line">Function.prototype // ƒ () &#123; [native code] &#125;</span><br><span class="line">Function.prototype.__proto__ === Object.prototype // <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>按照通用规则，一个”function”类型的对象，应该是由Function函数生成的，那它的prototype属性应该指向Function.prototype，也就是Function.prototype.<strong>proto</strong> === Function.prototype。和Object函数同样的问题出现了：循环引用。所以JavaScript规定Function.prototype.<strong>proto</strong> === Object.prototype，这样既避免了出现循环引用，又让<strong>proto</strong>构成的原型链指向了唯一的终点：Object.prototype.<strong>proto</strong> === null。</p>
+</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><img src="https://upload-images.jianshu.io/upload_images/13902845-babea8f0cde0d791.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1200/format/webp" alt="原型链图片"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/05/29/%E5%8E%9F%E5%9E%8B%E9%93%BE(%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0)/" data-id="ckas050tc0004c3le1f760fxp" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-TS-Day3" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/27/TS-Day3/" class="article-date">
+  <time datetime="2020-05-27T15:04:05.000Z" itemprop="datePublished">2020-05-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/27/TS-Day3/">TS Day3</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="类"><a href="#类" class="headerlink" title="类"></a>类</h2><ol>
+<li><p>声明与创建</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">class Person &#123;</span><br><span class="line">  public sex: string</span><br><span class="line">  protected name: string // 受保护属性，只能在类“Person”及其子类中访问</span><br><span class="line">  private age: number // 私有属性，只能在类“Person”中访问</span><br><span class="line">  public constructor(name: string, sex: string, age: number) &#123;</span><br><span class="line">    this.name = name</span><br><span class="line">    this.sex = sex</span><br><span class="line">    this.age = age</span><br><span class="line">  &#125;</span><br><span class="line">  public <span class="function"><span class="title">sayHello</span></span>() &#123;</span><br><span class="line">    console.log(<span class="string">'hello'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const person: Person = new Person(<span class="string">'joke'</span>, <span class="string">'男'</span>, 18)</span><br><span class="line">console.log(person) // &#123; name: <span class="string">'joke'</span>, sex: <span class="string">'男'</span>, age: 18 &#125;</span><br><span class="line">person.sayHello() // hello</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>继承与重写</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">class Nan extends Person &#123;</span><br><span class="line">  public height: number</span><br><span class="line"></span><br><span class="line">  public constructor(name: string, sex: string, age: number, height: number) &#123;</span><br><span class="line">    super(name, sex, age)</span><br><span class="line">    this.height = height</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  public <span class="function"><span class="title">interest</span></span>() &#123;</span><br><span class="line">    console.log(<span class="string">'看书'</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  public <span class="function"><span class="title">sayHello</span></span>() &#123;</span><br><span class="line">    super.sayHello()</span><br><span class="line">    console.log(<span class="string">'world'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const nan: Nan = new Nan(<span class="string">'jc'</span>, <span class="string">'男'</span>, 22, 168)</span><br><span class="line">console.log(nan) // &#123; name: <span class="string">'jc'</span>, sex: <span class="string">'男'</span>, age: 22, height: 168 &#125;</span><br><span class="line">nan.interest() // 看书</span><br><span class="line">nan.sayHello() //hello world</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">interface Cat &#123;</span><br><span class="line">  name?: string,</span><br><span class="line">  pinzhong: string,</span><br><span class="line">  cry(): void</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const cat: Cat = &#123;</span><br><span class="line">  name: <span class="string">'nangua'</span>,</span><br><span class="line">  pinzhong: <span class="string">'gouzi'</span>,</span><br><span class="line">  <span class="function"><span class="title">cry</span></span> () &#123;</span><br><span class="line">    console.log(<span class="string">'en'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/05/27/TS-Day3/" data-id="ckas050t80002c3leazwbb5y6" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-TS-Day2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/26/TS-Day2/" class="article-date">
+  <time datetime="2020-05-26T14:16:21.000Z" itemprop="datePublished">2020-05-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/26/TS-Day2/">TS Day2</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="函数的定义"><a href="#函数的定义" class="headerlink" title="函数的定义"></a>函数的定义</h2><ul>
+<li>固定参数<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> add(a:number, b:number): number &#123;</span><br><span class="line">  <span class="built_in">return</span> a + b</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>固定某些参数 ?<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> add(a:number, b:number, c:?number): number &#123;</span><br><span class="line">  <span class="built_in">let</span> sum:number = a + b</span><br><span class="line">  <span class="keyword">if</span> (c) sum += c</span><br><span class="line">  <span class="built_in">return</span> sum</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>不定参数<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> add(...arg:number[]): number &#123;</span><br><span class="line">  <span class="built_in">let</span> sum:number</span><br><span class="line">  <span class="keyword">for</span> (<span class="built_in">let</span> i = 0; i &lt; arg.length; i++) &#123;</span><br><span class="line">    sun += arg[i]</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">return</span> sum</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="引用类型-数组、字符串"><a href="#引用类型-数组、字符串" class="headerlink" title="引用类型(数组、字符串)"></a>引用类型(数组、字符串)</h2><ul>
+<li><p>数组</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">let</span> arr1:number[] = [1, 2]</span><br><span class="line"><span class="built_in">let</span> arr2:Array&lt;string&gt; = [<span class="string">'j'</span>, <span class="string">'s'</span>]</span><br><span class="line"><span class="built_in">let</span> arr3:Array&lt;boolean&gt; = new Array(<span class="literal">true</span>, <span class="literal">false</span>)</span><br><span class="line">// 元组</span><br><span class="line"><span class="built_in">let</span> arr4:[number, string] = [1, <span class="string">'js'</span>]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>字符串</p>
+</li>
+</ul>
+<ol>
+<li>构造函数<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">let</span> s1:String = new String(<span class="string">'s'</span>)</span><br></pre></td></tr></table></figure></li>
+<li>字面量<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">let</span> s2:string = <span class="string">'s'</span></span><br></pre></td></tr></table></figure></li>
+<li>replace indexOf lastIndexOf<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">let</span> s3:string = <span class="string">'hello world'</span></span><br><span class="line">s3.replace(<span class="string">'world'</span>, <span class="string">'re'</span>) // <span class="string">'hello re'</span></span><br><span class="line">s3.indexOf(<span class="string">'world'</span>) // 6</span><br><span class="line">s3.lastIndexOf(<span class="string">'o'</span>) // 7</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="日期类型"><a href="#日期类型" class="headerlink" title="日期类型"></a>日期类型</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">let</span> d:Date = new Date()</span><br></pre></td></tr></table></figure>
+
+<h2 id="正则"><a href="#正则" class="headerlink" title="正则"></a>正则</h2><ol>
+<li>声明<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">let</span> reg1:RegExp = new Reg(<span class="string">'hello'</span>, <span class="string">'gi'</span>) // 构造函数声明</span><br><span class="line"><span class="built_in">let</span> reg2:RegExp = /world/gi</span><br></pre></td></tr></table></figure></li>
+<li>test、exec方法<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">reg1.test(<span class="string">'hello world'</span>) // <span class="literal">true</span></span><br><span class="line">reg2.exec(<span class="string">'hello world'</span>) // [<span class="string">"hello"</span>, index: 0, input: <span class="string">"hello world"</span>, groups: undefined]</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/05/26/TS-Day2/" data-id="ckas050sd0000c3leegynfk7t" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-TS Day1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/25/TS%20Day1/" class="article-date">
+  <time datetime="2020-05-25T14:46:57.000Z" itemprop="datePublished">2020-05-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/25/TS%20Day1/">TS Day1</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ol>
+<li>npm i -g typescript</li>
+<li>npm init -y</li>
+<li>tsc –init</li>
+<li>npm i -D @types/node</li>
+</ol>
+<h2 id="基础类型定义"><a href="#基础类型定义" class="headerlink" title="基础类型定义"></a>基础类型定义</h2><h3 id="string"><a href="#string" class="headerlink" title="string"></a>string</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const name:string = <span class="string">'joke'</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="number"><a href="#number" class="headerlink" title="number"></a>number</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const age:number = 16</span><br><span class="line">const stature:number = 178.5</span><br><span class="line">const nan:number = NaN</span><br></pre></td></tr></table></figure>
+
+<h3 id="boolean"><a href="#boolean" class="headerlink" title="boolean"></a>boolean</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const b:boolean = <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="enum-枚举"><a href="#enum-枚举" class="headerlink" title="enum 枚举"></a>enum 枚举</h3><ul>
+<li>人: 男人、女人、中性<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">enum REN&#123;nan, nv, yao&#125;</span><br><span class="line">console.log(REN.yao) // 2</span><br><span class="line"></span><br><span class="line">enum REN&#123;nan=<span class="string">'男人'</span>, nv=<span class="string">'女人'</span>, yao=<span class="string">'妖'</span>&#125;</span><br><span class="line">console.log(REN.yao) // 妖</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="any"><a href="#any" class="headerlink" title="any"></a>any</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">let</span> t:any = 0</span><br><span class="line">t = <span class="string">'any'</span></span><br><span class="line">t = <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="null-undefined"><a href="#null-undefined" class="headerlink" title="null undefined"></a>null undefined</h3>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/05/25/TS%20Day1/" data-id="ckas050sv0001c3lecv0v5zx3" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-正则" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/11/%E6%AD%A3%E5%88%99/" class="article-date">
+  <time datetime="2020-05-11T02:11:50.000Z" itemprop="datePublished">2020-05-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/11/%E6%AD%A3%E5%88%99/">正则表达式语法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="捕获分组与非捕获分组（-）"><a href="#捕获分组与非捕获分组（-）" class="headerlink" title="捕获分组与非捕获分组（ ）"></a>捕获分组与非捕获分组（ ）</h3><ul>
+<li><p>捕获分组（x） 匹配 x 并且捕获匹配项<br>例如：/(foo)/ 匹配且捕获 “foo bar” 中的 “foo”。被匹配的子字符串可以通过 元素[n] 中找到，或 RegExp 对象的属性 $n 中找到</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"foo bar"</span>.match(/(foo)\s+bar/)</span><br><span class="line">// [<span class="string">"foo bar"</span>, <span class="string">"foo"</span>]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>非捕获分组(?:x) 匹配 x 不会捕获匹配项。匹配项不能够从结果再次访问</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"foo bar"</span>.match(/(?:foo)\s+bar/)</span><br><span class="line">// [<span class="string">"foo bar"</span>]</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="贪婪与非贪婪模式"><a href="#贪婪与非贪婪模式" class="headerlink" title="贪婪与非贪婪模式"></a>贪婪与非贪婪模式</h3><p>默认使用贪婪模式 尽可能多的匹配<br>在重复量词后面加一个?，代表使用非贪婪模式，尽可能短的匹配</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//默认贪婪模式（尽可能匹配多）</span><br><span class="line"><span class="string">"1234567"</span>.match(/\d&#123;2,5&#125;/)</span><br><span class="line">[12345]</span><br><span class="line">// 非贪婪模式</span><br><span class="line"><span class="string">"1234567"</span>.match(/\d&#123;2,5&#125;?/)</span><br><span class="line">[12]</span><br></pre></td></tr></table></figure>
+
+<h3 id="正向肯定查找和正向否定查找"><a href="#正向肯定查找和正向否定查找" class="headerlink" title="正向肯定查找和正向否定查找"></a>正向肯定查找和正向否定查找</h3><ul>
+<li>x(?=y) 只有当 x 后面紧跟着 y 时，才匹配 x。</li>
+<li>x(?!y) 只有当 x 后面不是紧跟着 y 时，才匹配 x。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const target = <span class="string">'bg.png index.html app.js index.css test.png'</span></span><br><span class="line">// 从以上字符串中找出以png结尾的文件名</span><br><span class="line">// 不使用正向肯定查找</span><br><span class="line">target.match(/\b(\w+).jpg/g)</span><br><span class="line">// [<span class="string">"bg.png"</span>, <span class="string">"test.png"</span>]</span><br><span class="line"></span><br><span class="line">// 使用正向肯定查找</span><br><span class="line">target.match(/\b(\w+)(?=.jpg)/g)</span><br><span class="line">// [<span class="string">"bg"</span>, <span class="string">"test"</span>]</span><br></pre></td></tr></table></figure></li>
+<li>注意：x(?=y)需要和非捕获分组(?:)区分开（写法很类似） 其次 x(?=y)最终匹配结果只有 x 没有 y</li>
+</ul>
+<h2 id="正则实例属性"><a href="#正则实例属性" class="headerlink" title="正则实例属性"></a>正则实例属性</h2><ul>
+<li>RegExp.prototype.global 是否开启全局匹配</li>
+<li>RegExp.prototype.ignoreCase 是否要忽略字符的大小写</li>
+<li>RegExp.prototype.lastIndex 下次匹配开始的字符串索引位置</li>
+<li>RegExp.prototype.multiline 是否开启多行模式匹配（影响 ^ 和 $ 的行为）</li>
+<li>RegExp.prototype.source 正则对象的源模式文本</li>
+<li>RegExp.prototype.sticky 是否开启粘滞匹配</li>
+</ul>
+<h2 id="正则实例方法"><a href="#正则实例方法" class="headerlink" title="正则实例方法"></a>正则实例方法</h2><h3 id="test"><a href="#test" class="headerlink" title="test"></a>test</h3><ul>
+<li>语法：regObj.test(str) 对字符串执行搜索</li>
+<li>返回值：布尔值。测试 str 中是否存在匹配 regObj 模式的字符串，存在返回 true，不存在返回 false</li>
+</ul>
+<h3 id="exec"><a href="#exec" class="headerlink" title="exec"></a>exec</h3><ul>
+<li>语法：regObj.exec(str)对字符串执行搜索</li>
+<li>返回值：如果没有匹配的文本则返回 null，否则返回一个结果数组：<br>返回的数组：第一个元素与正则表达式相匹配的文本；第二个元素是与 RegExpObject 的第一个捕获组相匹配的文本（如果有的话）；第三个元素是与 RegExpObject 的第二个捕获组相匹配的文本（如果有的话），以此类推。</li>
+</ul>
+<h2 id="字符串实例方法"><a href="#字符串实例方法" class="headerlink" title="字符串实例方法"></a>字符串实例方法</h2><h3 id="search"><a href="#search" class="headerlink" title="search"></a>search</h3><ul>
+<li>语法：str.search(reg）找出首次匹配项的索引</li>
+<li>返回值：返回匹配成功的第一个位置,如果没有任何匹配，则返回-1<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'abc'</span>.search(/b/)</span><br><span class="line">// 1</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="split"><a href="#split" class="headerlink" title="split"></a>split</h3><ul>
+<li>语法：str.split(reg[,maxLength]) 第一个参数可以是字符串或者正则表达式，它是分隔符；第二个参数可选，限制返回数组的最大长度。</li>
+<li>返回值：数组<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'abc-def_mno+xyz'</span>.split(/[-_+]/, 3);</span><br><span class="line">// [<span class="string">"abc"</span>, <span class="string">"def"</span>, <span class="string">"mno"</span>]</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="match"><a href="#match" class="headerlink" title="match"></a>match</h3><ul>
+<li>语法： str.match(reg)找到一个或多个正则表达式的匹配</li>
+<li>返回值：数组或者 null</li>
+</ul>
+<h3 id="replace"><a href="#replace" class="headerlink" title="replace"></a>replace</h3><ul>
+<li>语法：str.replace(reg/substr,newStr/function) 第一个参数可以是字符串或者正则表达式，它的作用是匹配。第二个参数可以是字符串或者函数，它的作用是替换。</li>
+<li>返回值：替换了之后的新的字符串，原字符串不变</li>
+</ul>
+<p><code>第一个参数</code>是字符串和正则表达式的<code>区别</code>在于：正则表达式的表达能力更强，而且可以全局匹配。因此参数是字符串的话只能进行一次替换。<br><code>第二个参数</code>是<code>字符串</code>时<br>replace 方法为第二个参数是字符串的方式提供了一些特殊的变量，能满足一般需求。</p>
+<p>$ 数字代表相应顺序的捕获组。注意，虽然它是一个变量，但是不要写成模板字符串<code>${$1}biu</code>，replace 内部逻辑会自动解析字符串，提取出变量。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ar reg=/(\d&#123;2&#125;)\/(\d&#123;2&#125;)\/(\d&#123;4&#125;)/</span><br><span class="line">var str=<span class="string">'09/05/2020'</span></span><br><span class="line">var res=str.replace(reg,<span class="string">'$3-$2-$1'</span>) // 2020-05-09</span><br></pre></td></tr></table></figure>
+
+<p><code>第二个参数</code>是<code>函数</code>时</p>
+<p>字符串的变量毕竟只能引用，无法操作。与之相对，函数的表达能力就强多了。<br>函数的返回值就是要替换的内容。函数如果没有返回值，默认返回undefined，所以替换内容就是 undefined。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var str=<span class="string">'a1b2c3d4e'</span></span><br><span class="line">var result=str.replace(/(\d)(\w)(\d)/g,(matchStr,group1,group2,group3,index,originStr)=&gt;&#123;</span><br><span class="line"><span class="built_in">return</span> group1+group3</span><br><span class="line">&#125;) //<span class="string">'a12c34e'</span></span><br></pre></td></tr></table></figure>
+
+<p>更多内容参考<a href="https://juejin.im/post/5eb8ad655188256d3c52de29" target="_blank" rel="noopener">掘金</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/05/11/%E6%AD%A3%E5%88%99/" data-id="ckas050td0005c3le62jl2ndz" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/05/29/BUG%E8%AE%B0%E5%BD%95(%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0)/">BUG记录(持续更新)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/29/%E5%8E%9F%E5%9E%8B%E9%93%BE(%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0)/">原型链(持续更新)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/27/TS-Day3/">TS Day3</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/26/TS-Day2/">TS Day2</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/25/TS%20Day1/">TS Day1</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 bin<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
