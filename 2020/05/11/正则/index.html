@@ -7,15 +7,15 @@
   
   <title>正则表达式语法 | Bin&#39;s Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="捕获分组与非捕获分组（ ） 捕获分组（x） 匹配 x 并且捕获匹配项例如：&#x2F;(foo)&#x2F; 匹配且捕获 “foo bar” 中的 “foo”。被匹配的子字符串可以通过 元素[n] 中找到，或 RegExp 对象的属性 $n 中找到 12&quot;foo bar&quot;.match(&#x2F;(foo)\s+bar&#x2F;)&#x2F;&#x2F; [&quot;foo bar&quot;, &quot;foo&quot;]  非捕获分组(?:x) 匹配 x 不会捕获匹配项。匹配项不能够">
+  <meta name="description" content="捕获分组与非捕获分组（ ） 捕获分组（x） 匹配 x 并且捕获匹配项例如：&#x2F;(foo)&#x2F; 匹配且捕获 “foo bar” 中的 “foo”。被匹配的子字符串可以通过 元素[n] 中找到，或 RegExp 对象的属性 $n 中找到12&quot;foo bar&quot;.match(&#x2F;(foo)\s+bar&#x2F;)&#x2F;&#x2F; [&quot;foo bar&quot;, &quot;foo&quot;]">
 <meta property="og:type" content="article">
 <meta property="og:title" content="正则表达式语法">
 <meta property="og:url" content="http://yoursite.com/2020/05/11/%E6%AD%A3%E5%88%99/index.html">
 <meta property="og:site_name" content="Bin&#39;s Hexo">
-<meta property="og:description" content="捕获分组与非捕获分组（ ） 捕获分组（x） 匹配 x 并且捕获匹配项例如：&#x2F;(foo)&#x2F; 匹配且捕获 “foo bar” 中的 “foo”。被匹配的子字符串可以通过 元素[n] 中找到，或 RegExp 对象的属性 $n 中找到 12&quot;foo bar&quot;.match(&#x2F;(foo)\s+bar&#x2F;)&#x2F;&#x2F; [&quot;foo bar&quot;, &quot;foo&quot;]  非捕获分组(?:x) 匹配 x 不会捕获匹配项。匹配项不能够">
+<meta property="og:description" content="捕获分组与非捕获分组（ ） 捕获分组（x） 匹配 x 并且捕获匹配项例如：&#x2F;(foo)&#x2F; 匹配且捕获 “foo bar” 中的 “foo”。被匹配的子字符串可以通过 元素[n] 中找到，或 RegExp 对象的属性 $n 中找到12&quot;foo bar&quot;.match(&#x2F;(foo)\s+bar&#x2F;)&#x2F;&#x2F; [&quot;foo bar&quot;, &quot;foo&quot;]">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-05-11T02:11:50.000Z">
-<meta property="article:modified_time" content="2020-05-29T06:31:31.233Z">
+<meta property="article:modified_time" content="2020-06-05T03:14:44.460Z">
 <meta property="article:author" content="bin">
 <meta name="twitter:card" content="summary">
   
@@ -89,11 +89,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="捕获分组与非捕获分组（-）"><a href="#捕获分组与非捕获分组（-）" class="headerlink" title="捕获分组与非捕获分组（ ）"></a>捕获分组与非捕获分组（ ）</h3><ul>
-<li><p>捕获分组（x） 匹配 x 并且捕获匹配项<br>例如：/(foo)/ 匹配且捕获 “foo bar” 中的 “foo”。被匹配的子字符串可以通过 元素[n] 中找到，或 RegExp 对象的属性 $n 中找到</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"foo bar"</span>.match(/(foo)\s+bar/)</span><br><span class="line">// [<span class="string">"foo bar"</span>, <span class="string">"foo"</span>]</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>非捕获分组(?:x) 匹配 x 不会捕获匹配项。匹配项不能够从结果再次访问</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"foo bar"</span>.match(/(?:foo)\s+bar/)</span><br><span class="line">// [<span class="string">"foo bar"</span>]</span><br></pre></td></tr></table></figure>
+<li>捕获分组（x） 匹配 x 并且捕获匹配项<br>例如：/(foo)/ 匹配且捕获 “foo bar” 中的 “foo”。被匹配的子字符串可以通过 元素[n] 中找到，或 RegExp 对象的属性 $n 中找到<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"foo bar"</span>.match(/(foo)\s+bar/)</span><br><span class="line">// [<span class="string">"foo bar"</span>, <span class="string">"foo"</span>]</span><br></pre></td></tr></table></figure>
+<a id="more"></a></li>
+<li>非捕获分组(?:x) 匹配 x 不会捕获匹配项。匹配项不能够从结果再次访问<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"foo bar"</span>.match(/(?:foo)\s+bar/)</span><br><span class="line">// [<span class="string">"foo bar"</span>]</span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>

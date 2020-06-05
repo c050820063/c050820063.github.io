@@ -7,13 +7,15 @@
   
   <title>BUG记录(持续更新) | Bin&#39;s Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
+  <meta name="description" content="H5 iosQ: ios12+,当页面输入框聚焦时，切换页面，页面存在错位">
+<meta property="og:type" content="article">
 <meta property="og:title" content="BUG记录(持续更新)">
 <meta property="og:url" content="http://yoursite.com/2020/05/29/BUG%E8%AE%B0%E5%BD%95(%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0)/index.html">
 <meta property="og:site_name" content="Bin&#39;s Hexo">
+<meta property="og:description" content="H5 iosQ: ios12+,当页面输入框聚焦时，切换页面，页面存在错位">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-05-29T06:50:26.000Z">
-<meta property="article:modified_time" content="2020-05-29T07:26:20.764Z">
+<meta property="article:modified_time" content="2020-06-05T03:15:38.159Z">
 <meta property="article:author" content="bin">
 <meta name="twitter:card" content="summary">
   
@@ -86,7 +88,22 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h3 id="H5"><a href="#H5" class="headerlink" title="H5"></a>H5</h3><ul>
+<li>ios<br>Q: ios12+,当页面输入框聚焦时，切换页面，页面存在错位<a id="more"></a>
+A:<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">el.addEventListener(<span class="string">'blur'</span>, <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">  const windowFocusHeight = window.innerHeight</span><br><span class="line">  <span class="keyword">if</span> (windowHeight === windowFocusHeight) <span class="built_in">return</span></span><br><span class="line">  setTimeout(() =&gt; &#123;</span><br><span class="line">    const scrollHeight =</span><br><span class="line">      document.documentElement.scrollTop||</span><br><span class="line">      document.body.scrollTop||</span><br><span class="line">      0</span><br><span class="line">    window.scrollTo(0, Math.max(scrollHeight - 1, 0))</span><br><span class="line">  &#125;, 100)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>Q：父元素设置overflow: hidden; 页面滚动会卡顿<br>A：设置 -webkit-overflow-scrolling: touch;</p>
+<p>Q：IOS12及以下 页面高度为100% 设置固定定位 底部按钮滑动会消失<br>A：替换为绝对定位 滚动内容单独设置一个100%的盒子（或者使用flex布局，滚动元素设置flex: 1，固定元素设置高度，不使用定位）</p>
+<p>Q：ios13 使用window.location.href 跳转到第三方页面 返回后页面不刷新<br>A：添加中间页面</p>
+<ul>
+<li>andriod<br>Q：输入框被激活时，键盘挡住输入框<br>A：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (/Android/gi.test(navigator.userAgent)) &#123;</span><br><span class="line">  window.addEventListener(<span class="string">'resize'</span>, <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">    window.setTimeout(<span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">      // document.activeElement.scrollIntoViewIfNeeded()</span><br><span class="line">      document.activeElement.scrollIntoView(<span class="literal">true</span>)</span><br><span class="line">    &#125;, 0)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>Q: 安卓webView5.1.1系统白屏 提示loading chunk {n} failed<br>A：部分包不兼容，进行降级处理</p>
+
       
     </div>
     <footer class="article-footer">

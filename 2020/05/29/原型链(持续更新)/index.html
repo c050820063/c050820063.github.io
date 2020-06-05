@@ -7,16 +7,16 @@
   
   <title>原型链(持续更新) | Bin&#39;s Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="参考 通用规则 对象有 __proto__ 属性 函数有prototype属性 对象由函数生成 生成对象时，对象的__proto__属性指向函数的prototype属性 万物皆对象，函数也有__proto__属性   一般情况 123456789101112&#x2F;&#x2F; 创建空对象时，实际上我们是用Object函数来生成对象的：var o &#x3D; &amp;#123;&amp;#125;o.__proto__ &#x3D;&#x3D;&#x3D; Obj">
+  <meta name="description" content="参考 通用规则 对象有 __proto__ 属性 函数有prototype属性 对象由函数生成 生成对象时，对象的__proto__属性指向函数的prototype属性 万物皆对象，函数也有__proto__属性">
 <meta property="og:type" content="article">
 <meta property="og:title" content="原型链(持续更新)">
 <meta property="og:url" content="http://yoursite.com/2020/05/29/%E5%8E%9F%E5%9E%8B%E9%93%BE(%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0)/index.html">
 <meta property="og:site_name" content="Bin&#39;s Hexo">
-<meta property="og:description" content="参考 通用规则 对象有 __proto__ 属性 函数有prototype属性 对象由函数生成 生成对象时，对象的__proto__属性指向函数的prototype属性 万物皆对象，函数也有__proto__属性   一般情况 123456789101112&#x2F;&#x2F; 创建空对象时，实际上我们是用Object函数来生成对象的：var o &#x3D; &amp;#123;&amp;#125;o.__proto__ &#x3D;&#x3D;&#x3D; Obj">
+<meta property="og:description" content="参考 通用规则 对象有 __proto__ 属性 函数有prototype属性 对象由函数生成 生成对象时，对象的__proto__属性指向函数的prototype属性 万物皆对象，函数也有__proto__属性">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/13902845-babea8f0cde0d791.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1200/format/webp">
 <meta property="article:published_time" content="2020-05-29T06:32:21.000Z">
-<meta property="article:modified_time" content="2020-05-29T09:28:09.433Z">
+<meta property="article:modified_time" content="2020-06-05T03:14:52.927Z">
 <meta property="article:author" content="bin">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/13902845-babea8f0cde0d791.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1200/format/webp">
@@ -95,7 +95,7 @@
 <li><code>对象</code>有 <code>__proto__</code> 属性 <code>函数</code>有<code>prototype</code>属性</li>
 <li><code>对象</code>由<code>函数</code>生成</li>
 <li>生成<code>对象</code>时，<code>对象</code>的<code>__proto__</code>属性指向<code>函数</code>的<code>prototype</code>属性</li>
-<li>万物皆对象，<code>函数</code>也有<code>__proto__</code>属性</li>
+<li>万物皆对象，<code>函数</code>也有<code>__proto__</code>属性<a id="more"></a></li>
 </ul>
 <ol>
 <li><p>一般情况</p>

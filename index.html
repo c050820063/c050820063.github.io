@@ -87,107 +87,11 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="组件-API（Composition-API）"><a href="#组件-API（Composition-API）" class="headerlink" title="组件 API（Composition API）"></a>组件 API（Composition API）</h2><p>组件 API 旨在通过将组件属性中当前可用的机制公开为 JavaScript 函数来解决这个问题。 Vue 核心团队将组件 API 描述为 “一组基于函数的附加 API，可以灵活地组合组件逻辑。” 用组件 API 编写的代码更具有可读性，并且其背后没有任何魔力，因此更易于阅读和学习。</p>
-<p>让我们通过一个用了新的组件 API 的组件的简单示例，来了解其工作原理。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;button @click=<span class="string">"increment"</span>&gt;</span><br><span class="line">    Count is: &#123;&#123; count &#125;&#125;, double is &#123;&#123; double &#125;&#125;, click to increment.</span><br><span class="line">  &lt;/button&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import &#123; ref, computed, onMounted &#125; from <span class="string">'vue'</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> default &#123;</span><br><span class="line">  <span class="function"><span class="title">setup</span></span>() &#123;</span><br><span class="line">    const count = ref(0)</span><br><span class="line">    const double = computed(() =&gt; count.value * 2)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> <span class="function"><span class="title">increment</span></span>() &#123;</span><br><span class="line">      count.value++</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    onMounted(() =&gt; console.log(<span class="string">'component mounted!'</span>))</span><br><span class="line"></span><br><span class="line">    <span class="built_in">return</span> &#123;</span><br><span class="line">      count,</span><br><span class="line">      double,</span><br><span class="line">      increment</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>import { ref, computed, onMounted } from ‘vue’</li>
-</ul>
-<p>需要使用 ref 创建响应性引用，用 computed 建立计算属性，并用 onMounted 访问安装的生命周期 hook</p>
-<ul>
-<li>setup 是用来干嘛的呢？</li>
-</ul>
-<p>简而言之，它只是一个将属性和函数返回到模板的函数而已。我们在这里声明所有响应性属性、计算属性、观察者和生命周期 hook，然后将它们返回，以便可以在模板中使用它们。</p>
-<p>我们不从 setup 函数返回的内容在模板中将会不可用。</p>
-<ul>
-<li>const count = ref(0)</li>
-</ul>
-<p>根据上面的内容，我们声明了带有 ref 函数的名为 count 的响应属性。它可以包装任何原语或对象并返回其响应性引用。传递的元素的值将会保留在所创建引用的 value 属性中。例如，如果你想访问 count 引用的值，则需要明确要求 count.value。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const double = computed(() =&gt; count.value * 2)</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">increment</span></span>() &#123;</span><br><span class="line">  count.value++</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这个是声明计算属性 computed</p>
-<ul>
-<li>onMounted(() =&gt; console.log(‘component mounted!’))</li>
-</ul>
-<p>这个是访问生命周期 hook</p>
-<h2 id="用组件-API-进行代码重用"><a href="#用组件-API-进行代码重用" class="headerlink" title="用组件 API 进行代码重用"></a>用组件 API 进行代码重用</h2><p>新的组件 API 具有更多优点。考虑一下代码重用。目前如果我们要在其他组件之间共享一些代码，则有两个可用的选择：mixins 和作用域插槽（ scoped slots）。但是两者都有缺点。</p>
-<p>假设我们要提取 counter 中的功能并在其他组件中重用。在下面，你可以看到如何将其与可用的 API 和新的组件 API 结合使用：</p>
-<ul>
-<li>mixins</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import CounterMixin from <span class="string">'./mixins/counter'</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> default &#123;</span><br><span class="line">  mixins: [CounterMixin]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>mixins 的最大缺点在于我们对它实际上添加到组件中的行为一无所知。这不仅使代码变得难以理解，而且还可能导致名称与现有属性和函数发生冲突。</p>
-<ul>
-<li>作用域插槽</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;Counter v-slot=<span class="string">"&#123; count, increment &#125;"</span>&gt;</span><br><span class="line">     &#123;&#123; count &#125;&#125;</span><br><span class="line">    &lt;button @click=<span class="string">"increment"</span>&gt;Increment&lt;/button&gt; </span><br><span class="line">  &lt;/Counter&gt; </span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
-
-<p>通过使用作用域插槽，我们确切地知道可以通过 v-slot 属性访问了哪些属性，因此代码更容易理解。这种方法的缺点是我们只能在模板中访问它，并且只能在 Counter 组件作用域内使用。</p>
-<ul>
-<li>Composition API</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">useCounter</span></span>() &#123;</span><br><span class="line">  const count = ref(0)</span><br><span class="line">  <span class="keyword">function</span> <span class="function"><span class="title">increment</span></span> () &#123; count.value++ &#125;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">return</span> &#123;</span><br><span class="line">    count,</span><br><span class="line">    incrememt</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> default &#123;</span><br><span class="line">  <span class="function"><span class="title">setup</span></span> () &#123;</span><br><span class="line">    const &#123; count, increment &#125; = useCounter()</span><br><span class="line">    <span class="built_in">return</span> &#123;</span><br><span class="line">      count,</span><br><span class="line">      increment</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>使用Composition API，我们不受模板和组件作用域的限制，并且能够确切地知道可以从 counter 访问哪些属性。另外我们可以受益于编辑器中可用的代码补全功能，因为 useCounter 只是一个返回某些属性的函数，因此编辑器可以帮助我们进行类型检查和建议。</p>
-<p>这也是使用第三方库的更优雅的方式。例如，如果我们想使用 Vuex，则可以显式地使用 useStore 函数，而不是污染 Vue 原型（this.$store）。这种方法也消除了 Vue 插件的幕后魔力。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const &#123; commit, dispatch &#125; = useStore()</span><br></pre></td></tr></table></figure>
-
-<p><a href="https://vue-composition-api-rfc.netlify.com/" target="_blank" rel="noopener">更多信息</a><br><a href="https://github.com/LinusBorg/composition-api-demos" target="_blank" rel="noopener">great repository</a></p>
-<h2 id="全局挂载-配置-API-更改"><a href="#全局挂载-配置-API-更改" class="headerlink" title="全局挂载/配置 API 更改"></a>全局挂载/配置 API 更改</h2><ul>
-<li>Vue2<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import Vue from <span class="string">'vue'</span></span><br><span class="line">import App from <span class="string">'./App.vue'</span></span><br><span class="line"></span><br><span class="line">Vue.config.ignoredElements = [/^app-/]</span><br><span class="line">Vue.use(/* ... */)</span><br><span class="line">Vue.mixin(/* ... */)</span><br><span class="line">Vue.component(/* ... */)</span><br><span class="line">Vue.directive(/* ... */)</span><br><span class="line"></span><br><span class="line">new Vue(&#123;</span><br><span class="line">  render: h =&gt; h(App)</span><br><span class="line">&#125;).<span class="variable">$mount</span>(<span class="string">'#app'</span>)</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<p>-Vue3</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import &#123; createApp &#125; from <span class="string">'vue'</span></span><br><span class="line">import App from <span class="string">'./App.vue'</span></span><br><span class="line"></span><br><span class="line">const app = createApp(App)</span><br><span class="line"></span><br><span class="line">app.config.ignoredElements = [/^app-/]</span><br><span class="line">app.use(/* ... */)</span><br><span class="line">app.mixin(/* ... */)</span><br><span class="line">app.component(/* ... */)</span><br><span class="line">app.directive(/* ... */)</span><br><span class="line"></span><br><span class="line">app.mount(<span class="string">'#app'</span>)</span><br></pre></td></tr></table></figure>
-
-<p>Vue3 每个配置都限于使用 createApp 定义的某个 Vue 程序,它可以使你的代码更易于理解，并且不易出现由第三方插件引发的意外问题。Vue2中，如果某些第三方解决方案正在修改 Vue 对象，那么它可能会以意想不到的方式（尤其是全局混合）影响你的程序，而 Vue 3 则没有这个问题。</p>
-<p><a href="https://github.com/vuejs/rfcs/pull/29" target="_blank" rel="noopener">more</a></p>
-<h2 id="片段（Fragments）"><a href="#片段（Fragments）" class="headerlink" title="片段（Fragments）"></a>片段（Fragments）</h2><p>Vue 3 中添加了片段功能<br>Vue2 中无发创建这样的组件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;Hello&lt;/div&gt;</span><br><span class="line">  &lt;div&gt;World&lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
-<p>原因是代表任何 Vue 组件的 Vue 实例都需要绑定到单个 DOM 元素中。创建具有多个 DOM 节点的组件的唯一方法是创建一个没有基础 Vue 实例的功能组件。</p>
-<p>React同样有这个问题， React使用了一个名为 Fragment 的虚拟元素</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class Columns extends React.Component &#123;</span><br><span class="line">  <span class="function"><span class="title">render</span></span>() &#123;</span><br><span class="line">    <span class="built_in">return</span> (</span><br><span class="line">      &lt;React.Fragment&gt;</span><br><span class="line">        &lt;td&gt;Hello&lt;/td&gt;</span><br><span class="line">        &lt;td&gt;World&lt;/td&gt;</span><br><span class="line">      &lt;/React.Fragment&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>尽管 Fragment 看起来像是普通的 DOM 元素，但它是虚拟的，根本不会在 DOM 树中渲染。这样我们就可以将组件功能绑定到单个元素中，而无需创建冗余的 DOM 节点。</p>
-<p>在Vue2中可以使用<a href="https://vuejsdevelopers.com/2018/09/11/vue-multiple-root-fragments/" target="_blank" rel="noopener">vue-fragments</a>库使用这个标签，Vue3中可以直接使用</p>
-<h2 id="Suspense"><a href="#Suspense" class="headerlink" title="Suspense"></a>Suspense</h2><p>将被用在 Vue 3 中的另一个从 React 学来的功能是 Suspense 组件。</p>
-<p>Suspense 能够暂停你的组件渲染，并渲染后备组件，直到条件满足为止。在 Vue London 期间，尤雨溪简短地谈到了这个主题，并向我们展示了可以期望的 API。事实证明，Suspense 只是带有插槽的组件：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;Suspense&gt;</span><br><span class="line">  &lt;template &gt;</span><br><span class="line">    &lt;Suspended-component /&gt;</span><br><span class="line">  &lt;/template&gt;</span><br><span class="line">  &lt;template <span class="comment">#fallback&gt;</span></span><br><span class="line">    Loading...</span><br><span class="line">  &lt;/template&gt;</span><br><span class="line">&lt;/Suspense&gt;</span><br></pre></td></tr></table></figure>
-
-<p>Suspense可以挂起Loading内容将一直显示到Suspended-component完全渲染为止。挂起可以等待，直到该组件被下载（如果这是一个异步组件），或者在setup功能上执行一些异步操作。</p>
-<h2 id="Multiple-v-models"><a href="#Multiple-v-models" class="headerlink" title="Multiple v-models"></a>Multiple v-models</h2><ul>
-<li>Vue2<br>我们可以从表单元素上很好的了解 v-model：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input v-bind=<span class="string">"property /&gt;</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<p>在组件内使用v-model，v-model 只是传递 value 属性和侦听 input 事件的捷径。把上面的例子重写为以下语法，将具有完全相同的效果：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;input </span><br><span class="line">  v-bind:value=<span class="string">"property"</span></span><br><span class="line">  v-on:input=<span class="string">"property = <span class="variable">$event</span>.target.value"</span></span><br><span class="line">/&gt;</span><br></pre></td></tr></table></figure>
-<p>也可以通过 model 属性更改默认属性及事件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">model: &#123;</span><br><span class="line">  prop: <span class="string">'checked'</span>,</span><br><span class="line">  event: <span class="string">'change'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>但是一个组件只能有一个v-model, 但是在Vue3中可以给v-model属性名</p>
-<ul>
-<li>Vue3</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;InviteeForm</span><br><span class="line">  v-model:name=<span class="string">"inviteeName"</span></span><br><span class="line">  v-model:email=<span class="string">"inviteeEmail"</span></span><br><span class="line">/&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Portals"><a href="#Portals" class="headerlink" title="Portals"></a>Portals</h2><p>Portals 是特殊的组件，用来在当前组件之外渲染某些内容。它也是在 React 中实现的功能之一。这就是 React 文档关于 Portals 的内容：</p>
-<p>“Portals 提供了一种独特的方法来将子级渲染到父组件的 DOM 层次结构之外的 DOM 节点中。”</p>
-<p>这种处理模式，是弹出式窗口以及通常显示在页面顶部的组件所使用的一种非常好的方法。通过使用 Portals，你可以确保没有任何主机组件 CSS 规则会影响你要显示的组件，并且可以避免用 z-index 进行的黑客攻击。</p>
-<p>对于每个 Portal，我们需要为其指定目标位置，在该目标位置将渲染 Portals 内容。在Vue2中可以使用 <a href="https://github.com/LinusBorg/portal-vue" target="_blank" rel="noopener">portal-vue</a> 库。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;portal to=<span class="string">"destination"</span>&gt;</span><br><span class="line">  &lt;p&gt;This slot content will be rendered wherever thportal-target with name <span class="string">'destination'</span></span><br><span class="line">    is located.&lt;/p&gt;</span><br><span class="line">&lt;/portal&gt;</span><br><span class="line"></span><br><span class="line">&lt;portal-target name=<span class="string">"destination"</span>&gt;</span><br><span class="line">  &lt;!--</span><br><span class="line">  This component can be located anywhere <span class="keyword">in</span> your App.</span><br><span class="line">  The slot content of the above portal component wilbe rendered here.</span><br><span class="line">  --&gt;</span><br><span class="line">&lt;/portal-target&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="新的自定义指令-API"><a href="#新的自定义指令-API" class="headerlink" title="新的自定义指令 API"></a>新的自定义指令 API</h2><p>自定义指令 API 在 Vue 3 中将略有变化，以便更好地与组件生命周期保持一致。这项改进应使 API 更加直观。</p>
-<ul>
-<li><p>Vue2</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const MyDirective = &#123;</span><br><span class="line">  <span class="built_in">bind</span>(el, binding, vnode, prevVnode) &#123;&#125;,</span><br><span class="line">  <span class="function"><span class="title">inserted</span></span>() &#123;&#125;,</span><br><span class="line">  <span class="function"><span class="title">update</span></span>() &#123;&#125;,</span><br><span class="line">  <span class="function"><span class="title">componentUpdated</span></span>() &#123;&#125;,</span><br><span class="line">  <span class="function"><span class="title">unbind</span></span>() &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Vue3</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">const MyDirective = &#123;</span><br><span class="line">  beforeMount(el, binding, vnode, prevVnode) &#123;&#125;,</span><br><span class="line">  <span class="function"><span class="title">mounted</span></span>() &#123;&#125;,</span><br><span class="line">  <span class="function"><span class="title">beforeUpdate</span></span>() &#123;&#125;,</span><br><span class="line">  <span class="function"><span class="title">updated</span></span>() &#123;&#125;,</span><br><span class="line">  <span class="function"><span class="title">beforeUnmount</span></span>() &#123;&#125;, // new</span><br><span class="line">  <span class="function"><span class="title">unmounted</span></span>() &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<p><a href="https://segmentfault.com/a/1190000020933028" target="_blank" rel="noopener">参考</a></p>
-
+        
+          <p class="article-more-link">
+            <a href="/2020/06/04/Vue3%20study/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -223,6 +127,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
+        <h3 id="H5"><a href="#H5" class="headerlink" title="H5"></a>H5</h3><ul>
+<li>ios<br>Q: ios12+,当页面输入框聚焦时，切换页面，页面存在错位
+        
+          <p class="article-more-link">
+            <a href="/2020/05/29/BUG%E8%AE%B0%E5%BD%95(%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0)/#more">Read More</a>
+          </p>
         
       
     </div>
@@ -264,40 +174,12 @@
 <li><code>对象</code>有 <code>__proto__</code> 属性 <code>函数</code>有<code>prototype</code>属性</li>
 <li><code>对象</code>由<code>函数</code>生成</li>
 <li>生成<code>对象</code>时，<code>对象</code>的<code>__proto__</code>属性指向<code>函数</code>的<code>prototype</code>属性</li>
-<li>万物皆对象，<code>函数</code>也有<code>__proto__</code>属性</li>
-</ul>
-<ol>
-<li><p>一般情况</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// 创建空对象时，实际上我们是用Object函数来生成对象的：</span><br><span class="line">var o = &#123;&#125;</span><br><span class="line">o.__proto__ === Object.prototype // <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">// 我们也可以显式的使用Object函数来创建对象：</span><br><span class="line">var o = new Object()</span><br><span class="line">o.__proto__ === Object.prototype // <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">// 当我们使用函数来创建自定义的对象时，上面的规则同样适用：</span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">Myobjcet</span></span>() &#123;&#125;</span><br><span class="line">var mo = new Myobjcet()</span><br><span class="line">mo.__proto__ === Myobjcet.prototype // <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>函数对象</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// 函数对象都是由Function函数生成的：</span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">fn</span></span>() &#123;&#125;</span><br><span class="line">fn.__proto__ === Function.prototype // <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">// Function函数本身作为对象时，生成它的函数是他自身！</span><br><span class="line">Funtion.__proto__ === Function.prototype // <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">// Object函数既然是函数，那生成它的函数自然是Function函数咯：</span><br><span class="line">Object.__proto__ === Function.prototype // <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>prototype属性</p>
-</li>
-</ol>
-<ul>
-<li><code>对象</code>的<code>__proto__</code>属性是从生成它的<code>函数</code>的<code>prototype</code>那里得来的，那我们不禁要问，<code>函数</code>的<code>prototype</code>又是谁？<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 一般函数默认的prototype是系统自动生成的一个对象：</span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">fn</span></span>()&#123;&#125;</span><br><span class="line">typeof fn.prototype // <span class="string">"object"</span></span><br><span class="line"></span><br><span class="line">fn.prototype</span><br><span class="line">&#123;constructor: ƒ&#125;</span><br><span class="line">    constructor: ƒ fn()</span><br><span class="line">    __proto__: Object</span><br><span class="line"></span><br><span class="line">fn.prototype.constructor === fn // <span class="literal">true</span></span><br><span class="line">fn.prototype.__proto__ === Object.prototype // <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<ol start="4">
-<li>特殊情况</li>
-</ol>
-<ul>
-<li>Object.prototype<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">typeof Object.prototype // <span class="string">"object"</span></span><br><span class="line">&gt;Object.prototype</span><br><span class="line">&#123;constructor: ƒ, __defineGetter__: ƒ, __defineSetter__: ƒ, hasOwnProperty: ƒ, __lookupGetter__: ƒ, …&#125;</span><br><span class="line">  constructor: ƒ Object()</span><br><span class="line">  hasOwnProperty: ƒ hasOwnProperty()</span><br><span class="line">  isPrototypeOf: ƒ isPrototypeOf()</span><br><span class="line">  propertyIsEnumerable: ƒ propertyIsEnumerable()</span><br><span class="line">  toLocaleString: ƒ toLocaleString()</span><br><span class="line">  toString: ƒ toString()</span><br><span class="line">  valueOf: ƒ valueOf()</span><br><span class="line">  __defineGetter__: ƒ __defineGetter__()</span><br><span class="line">  __defineSetter__: ƒ __defineSetter__()</span><br><span class="line">  __lookupGetter__: ƒ __lookupGetter__()</span><br><span class="line">  __lookupSetter__: ƒ __lookupSetter__()</span><br><span class="line">  get __proto__: ƒ __proto__()</span><br><span class="line">  <span class="built_in">set</span> __proto__: ƒ __proto__()</span><br></pre></td></tr></table></figure>
-可以看到Object函数的prototype属性也是一个类型为”object”的对象，但和一般函数的默认prototype属性不一样的是，它多了一大堆方法，这些方法都是JavaScript对象的系统默认方法 但是Object函数的prototype属性里没有<strong>proto</strong>属性</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Object.prototype.__proto__  // null</span><br></pre></td></tr></table></figure>
-<p>这就是Object函数特殊情况了：Object.prototype.<strong>proto</strong> === null，这就是JavaScript原型链的终点了</p>
-<ul>
-<li><p>Function.prototype</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">typeof Funtion.prototype // <span class="string">"function"</span></span><br><span class="line">Function.prototype // ƒ () &#123; [native code] &#125;</span><br><span class="line">Function.prototype.__proto__ === Object.prototype // <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>按照通用规则，一个”function”类型的对象，应该是由Function函数生成的，那它的prototype属性应该指向Function.prototype，也就是Function.prototype.<strong>proto</strong> === Function.prototype。和Object函数同样的问题出现了：循环引用。所以JavaScript规定Function.prototype.<strong>proto</strong> === Object.prototype，这样既避免了出现循环引用，又让<strong>proto</strong>构成的原型链指向了唯一的终点：Object.prototype.<strong>proto</strong> === null。</p>
-</li>
-</ul>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><img src="https://upload-images.jianshu.io/upload_images/13902845-babea8f0cde0d791.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1200/format/webp" alt="原型链图片"></p>
-
+<li>万物皆对象，<code>函数</code>也有<code>__proto__</code>属性
+        
+          <p class="article-more-link">
+            <a href="/2020/05/29/%E5%8E%9F%E5%9E%8B%E9%93%BE(%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0)/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -335,14 +217,11 @@
       
         <h2 id="类"><a href="#类" class="headerlink" title="类"></a>类</h2><ol>
 <li><p>声明与创建</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">class Person &#123;</span><br><span class="line">  public sex: string</span><br><span class="line">  protected name: string // 受保护属性，只能在类“Person”及其子类中访问</span><br><span class="line">  private age: number // 私有属性，只能在类“Person”中访问</span><br><span class="line">  public constructor(name: string, sex: string, age: number) &#123;</span><br><span class="line">    this.name = name</span><br><span class="line">    this.sex = sex</span><br><span class="line">    this.age = age</span><br><span class="line">  &#125;</span><br><span class="line">  public <span class="function"><span class="title">sayHello</span></span>() &#123;</span><br><span class="line">    console.log(<span class="string">'hello'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const person: Person = new Person(<span class="string">'joke'</span>, <span class="string">'男'</span>, 18)</span><br><span class="line">console.log(person) // &#123; name: <span class="string">'joke'</span>, sex: <span class="string">'男'</span>, age: 18 &#125;</span><br><span class="line">person.sayHello() // hello</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>继承与重写</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">class Nan extends Person &#123;</span><br><span class="line">  public height: number</span><br><span class="line"></span><br><span class="line">  public constructor(name: string, sex: string, age: number, height: number) &#123;</span><br><span class="line">    super(name, sex, age)</span><br><span class="line">    this.height = height</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  public <span class="function"><span class="title">interest</span></span>() &#123;</span><br><span class="line">    console.log(<span class="string">'看书'</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  public <span class="function"><span class="title">sayHello</span></span>() &#123;</span><br><span class="line">    super.sayHello()</span><br><span class="line">    console.log(<span class="string">'world'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const nan: Nan = new Nan(<span class="string">'jc'</span>, <span class="string">'男'</span>, 22, 168)</span><br><span class="line">console.log(nan) // &#123; name: <span class="string">'jc'</span>, sex: <span class="string">'男'</span>, age: 22, height: 168 &#125;</span><br><span class="line">nan.interest() // 看书</span><br><span class="line">nan.sayHello() //hello world</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">interface Cat &#123;</span><br><span class="line">  name?: string,</span><br><span class="line">  pinzhong: string,</span><br><span class="line">  cry(): void</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const cat: Cat = &#123;</span><br><span class="line">  name: <span class="string">'nangua'</span>,</span><br><span class="line">  pinzhong: <span class="string">'gouzi'</span>,</span><br><span class="line">  <span class="function"><span class="title">cry</span></span> () &#123;</span><br><span class="line">    console.log(<span class="string">'en'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+          <p class="article-more-link">
+            <a href="/2020/05/27/TS-Day3/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -379,33 +258,12 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="函数的定义"><a href="#函数的定义" class="headerlink" title="函数的定义"></a>函数的定义</h2><ul>
-<li>固定参数<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> add(a:number, b:number): number &#123;</span><br><span class="line">  <span class="built_in">return</span> a + b</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>固定某些参数 ?<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> add(a:number, b:number, c:?number): number &#123;</span><br><span class="line">  <span class="built_in">let</span> sum:number = a + b</span><br><span class="line">  <span class="keyword">if</span> (c) sum += c</span><br><span class="line">  <span class="built_in">return</span> sum</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>不定参数<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> add(...arg:number[]): number &#123;</span><br><span class="line">  <span class="built_in">let</span> sum:number</span><br><span class="line">  <span class="keyword">for</span> (<span class="built_in">let</span> i = 0; i &lt; arg.length; i++) &#123;</span><br><span class="line">    sun += arg[i]</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">return</span> sum</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h2 id="引用类型-数组、字符串"><a href="#引用类型-数组、字符串" class="headerlink" title="引用类型(数组、字符串)"></a>引用类型(数组、字符串)</h2><ul>
-<li><p>数组</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">let</span> arr1:number[] = [1, 2]</span><br><span class="line"><span class="built_in">let</span> arr2:Array&lt;string&gt; = [<span class="string">'j'</span>, <span class="string">'s'</span>]</span><br><span class="line"><span class="built_in">let</span> arr3:Array&lt;boolean&gt; = new Array(<span class="literal">true</span>, <span class="literal">false</span>)</span><br><span class="line">// 元组</span><br><span class="line"><span class="built_in">let</span> arr4:[number, string] = [1, <span class="string">'js'</span>]</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>字符串</p>
-</li>
-</ul>
-<ol>
-<li>构造函数<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">let</span> s1:String = new String(<span class="string">'s'</span>)</span><br></pre></td></tr></table></figure></li>
-<li>字面量<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">let</span> s2:string = <span class="string">'s'</span></span><br></pre></td></tr></table></figure></li>
-<li>replace indexOf lastIndexOf<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">let</span> s3:string = <span class="string">'hello world'</span></span><br><span class="line">s3.replace(<span class="string">'world'</span>, <span class="string">'re'</span>) // <span class="string">'hello re'</span></span><br><span class="line">s3.indexOf(<span class="string">'world'</span>) // 6</span><br><span class="line">s3.lastIndexOf(<span class="string">'o'</span>) // 7</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h2 id="日期类型"><a href="#日期类型" class="headerlink" title="日期类型"></a>日期类型</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">let</span> d:Date = new Date()</span><br></pre></td></tr></table></figure>
-
-<h2 id="正则"><a href="#正则" class="headerlink" title="正则"></a>正则</h2><ol>
-<li>声明<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">let</span> reg1:RegExp = new Reg(<span class="string">'hello'</span>, <span class="string">'gi'</span>) // 构造函数声明</span><br><span class="line"><span class="built_in">let</span> reg2:RegExp = /world/gi</span><br></pre></td></tr></table></figure></li>
-<li>test、exec方法<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">reg1.test(<span class="string">'hello world'</span>) // <span class="literal">true</span></span><br><span class="line">reg2.exec(<span class="string">'hello world'</span>) // [<span class="string">"hello"</span>, index: 0, input: <span class="string">"hello world"</span>, groups: undefined]</span><br></pre></td></tr></table></figure></li>
-</ol>
-
+<li>固定参数<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> add(a:number, b:number): number &#123;</span><br><span class="line">  <span class="built_in">return</span> a + b</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+          <p class="article-more-link">
+            <a href="/2020/05/26/TS-Day2/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -445,22 +303,12 @@
 <li>npm i -g typescript</li>
 <li>npm init -y</li>
 <li>tsc –init</li>
-<li>npm i -D @types/node</li>
-</ol>
-<h2 id="基础类型定义"><a href="#基础类型定义" class="headerlink" title="基础类型定义"></a>基础类型定义</h2><h3 id="string"><a href="#string" class="headerlink" title="string"></a>string</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const name:string = <span class="string">'joke'</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="number"><a href="#number" class="headerlink" title="number"></a>number</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const age:number = 16</span><br><span class="line">const stature:number = 178.5</span><br><span class="line">const nan:number = NaN</span><br></pre></td></tr></table></figure>
-
-<h3 id="boolean"><a href="#boolean" class="headerlink" title="boolean"></a>boolean</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const b:boolean = <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="enum-枚举"><a href="#enum-枚举" class="headerlink" title="enum 枚举"></a>enum 枚举</h3><ul>
-<li>人: 男人、女人、中性<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">enum REN&#123;nan, nv, yao&#125;</span><br><span class="line">console.log(REN.yao) // 2</span><br><span class="line"></span><br><span class="line">enum REN&#123;nan=<span class="string">'男人'</span>, nv=<span class="string">'女人'</span>, yao=<span class="string">'妖'</span>&#125;</span><br><span class="line">console.log(REN.yao) // 妖</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h3 id="any"><a href="#any" class="headerlink" title="any"></a>any</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">let</span> t:any = 0</span><br><span class="line">t = <span class="string">'any'</span></span><br><span class="line">t = <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="null-undefined"><a href="#null-undefined" class="headerlink" title="null undefined"></a>null undefined</h3>
+<li>npm i -D @types/node
+        
+          <p class="article-more-link">
+            <a href="/2020/05/25/TS%20Day1/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -497,68 +345,12 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="捕获分组与非捕获分组（-）"><a href="#捕获分组与非捕获分组（-）" class="headerlink" title="捕获分组与非捕获分组（ ）"></a>捕获分组与非捕获分组（ ）</h3><ul>
-<li><p>捕获分组（x） 匹配 x 并且捕获匹配项<br>例如：/(foo)/ 匹配且捕获 “foo bar” 中的 “foo”。被匹配的子字符串可以通过 元素[n] 中找到，或 RegExp 对象的属性 $n 中找到</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"foo bar"</span>.match(/(foo)\s+bar/)</span><br><span class="line">// [<span class="string">"foo bar"</span>, <span class="string">"foo"</span>]</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>非捕获分组(?:x) 匹配 x 不会捕获匹配项。匹配项不能够从结果再次访问</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"foo bar"</span>.match(/(?:foo)\s+bar/)</span><br><span class="line">// [<span class="string">"foo bar"</span>]</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h3 id="贪婪与非贪婪模式"><a href="#贪婪与非贪婪模式" class="headerlink" title="贪婪与非贪婪模式"></a>贪婪与非贪婪模式</h3><p>默认使用贪婪模式 尽可能多的匹配<br>在重复量词后面加一个?，代表使用非贪婪模式，尽可能短的匹配</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//默认贪婪模式（尽可能匹配多）</span><br><span class="line"><span class="string">"1234567"</span>.match(/\d&#123;2,5&#125;/)</span><br><span class="line">[12345]</span><br><span class="line">// 非贪婪模式</span><br><span class="line"><span class="string">"1234567"</span>.match(/\d&#123;2,5&#125;?/)</span><br><span class="line">[12]</span><br></pre></td></tr></table></figure>
-
-<h3 id="正向肯定查找和正向否定查找"><a href="#正向肯定查找和正向否定查找" class="headerlink" title="正向肯定查找和正向否定查找"></a>正向肯定查找和正向否定查找</h3><ul>
-<li>x(?=y) 只有当 x 后面紧跟着 y 时，才匹配 x。</li>
-<li>x(?!y) 只有当 x 后面不是紧跟着 y 时，才匹配 x。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const target = <span class="string">'bg.png index.html app.js index.css test.png'</span></span><br><span class="line">// 从以上字符串中找出以png结尾的文件名</span><br><span class="line">// 不使用正向肯定查找</span><br><span class="line">target.match(/\b(\w+).jpg/g)</span><br><span class="line">// [<span class="string">"bg.png"</span>, <span class="string">"test.png"</span>]</span><br><span class="line"></span><br><span class="line">// 使用正向肯定查找</span><br><span class="line">target.match(/\b(\w+)(?=.jpg)/g)</span><br><span class="line">// [<span class="string">"bg"</span>, <span class="string">"test"</span>]</span><br></pre></td></tr></table></figure></li>
-<li>注意：x(?=y)需要和非捕获分组(?:)区分开（写法很类似） 其次 x(?=y)最终匹配结果只有 x 没有 y</li>
-</ul>
-<h2 id="正则实例属性"><a href="#正则实例属性" class="headerlink" title="正则实例属性"></a>正则实例属性</h2><ul>
-<li>RegExp.prototype.global 是否开启全局匹配</li>
-<li>RegExp.prototype.ignoreCase 是否要忽略字符的大小写</li>
-<li>RegExp.prototype.lastIndex 下次匹配开始的字符串索引位置</li>
-<li>RegExp.prototype.multiline 是否开启多行模式匹配（影响 ^ 和 $ 的行为）</li>
-<li>RegExp.prototype.source 正则对象的源模式文本</li>
-<li>RegExp.prototype.sticky 是否开启粘滞匹配</li>
-</ul>
-<h2 id="正则实例方法"><a href="#正则实例方法" class="headerlink" title="正则实例方法"></a>正则实例方法</h2><h3 id="test"><a href="#test" class="headerlink" title="test"></a>test</h3><ul>
-<li>语法：regObj.test(str) 对字符串执行搜索</li>
-<li>返回值：布尔值。测试 str 中是否存在匹配 regObj 模式的字符串，存在返回 true，不存在返回 false</li>
-</ul>
-<h3 id="exec"><a href="#exec" class="headerlink" title="exec"></a>exec</h3><ul>
-<li>语法：regObj.exec(str)对字符串执行搜索</li>
-<li>返回值：如果没有匹配的文本则返回 null，否则返回一个结果数组：<br>返回的数组：第一个元素与正则表达式相匹配的文本；第二个元素是与 RegExpObject 的第一个捕获组相匹配的文本（如果有的话）；第三个元素是与 RegExpObject 的第二个捕获组相匹配的文本（如果有的话），以此类推。</li>
-</ul>
-<h2 id="字符串实例方法"><a href="#字符串实例方法" class="headerlink" title="字符串实例方法"></a>字符串实例方法</h2><h3 id="search"><a href="#search" class="headerlink" title="search"></a>search</h3><ul>
-<li>语法：str.search(reg）找出首次匹配项的索引</li>
-<li>返回值：返回匹配成功的第一个位置,如果没有任何匹配，则返回-1<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'abc'</span>.search(/b/)</span><br><span class="line">// 1</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h3 id="split"><a href="#split" class="headerlink" title="split"></a>split</h3><ul>
-<li>语法：str.split(reg[,maxLength]) 第一个参数可以是字符串或者正则表达式，它是分隔符；第二个参数可选，限制返回数组的最大长度。</li>
-<li>返回值：数组<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'abc-def_mno+xyz'</span>.split(/[-_+]/, 3);</span><br><span class="line">// [<span class="string">"abc"</span>, <span class="string">"def"</span>, <span class="string">"mno"</span>]</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h3 id="match"><a href="#match" class="headerlink" title="match"></a>match</h3><ul>
-<li>语法： str.match(reg)找到一个或多个正则表达式的匹配</li>
-<li>返回值：数组或者 null</li>
-</ul>
-<h3 id="replace"><a href="#replace" class="headerlink" title="replace"></a>replace</h3><ul>
-<li>语法：str.replace(reg/substr,newStr/function) 第一个参数可以是字符串或者正则表达式，它的作用是匹配。第二个参数可以是字符串或者函数，它的作用是替换。</li>
-<li>返回值：替换了之后的新的字符串，原字符串不变</li>
-</ul>
-<p><code>第一个参数</code>是字符串和正则表达式的<code>区别</code>在于：正则表达式的表达能力更强，而且可以全局匹配。因此参数是字符串的话只能进行一次替换。<br><code>第二个参数</code>是<code>字符串</code>时<br>replace 方法为第二个参数是字符串的方式提供了一些特殊的变量，能满足一般需求。</p>
-<p>$ 数字代表相应顺序的捕获组。注意，虽然它是一个变量，但是不要写成模板字符串<code>${$1}biu</code>，replace 内部逻辑会自动解析字符串，提取出变量。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ar reg=/(\d&#123;2&#125;)\/(\d&#123;2&#125;)\/(\d&#123;4&#125;)/</span><br><span class="line">var str=<span class="string">'09/05/2020'</span></span><br><span class="line">var res=str.replace(reg,<span class="string">'$3-$2-$1'</span>) // 2020-05-09</span><br></pre></td></tr></table></figure>
-
-<p><code>第二个参数</code>是<code>函数</code>时</p>
-<p>字符串的变量毕竟只能引用，无法操作。与之相对，函数的表达能力就强多了。<br>函数的返回值就是要替换的内容。函数如果没有返回值，默认返回undefined，所以替换内容就是 undefined。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var str=<span class="string">'a1b2c3d4e'</span></span><br><span class="line">var result=str.replace(/(\d)(\w)(\d)/g,(matchStr,group1,group2,group3,index,originStr)=&gt;&#123;</span><br><span class="line"><span class="built_in">return</span> group1+group3</span><br><span class="line">&#125;) //<span class="string">'a12c34e'</span></span><br></pre></td></tr></table></figure>
-
-<p>更多内容参考<a href="https://juejin.im/post/5eb8ad655188256d3c52de29" target="_blank" rel="noopener">掘金</a></p>
-
+<li>捕获分组（x） 匹配 x 并且捕获匹配项<br>例如：/(foo)/ 匹配且捕获 “foo bar” 中的 “foo”。被匹配的子字符串可以通过 元素[n] 中找到，或 RegExp 对象的属性 $n 中找到<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"foo bar"</span>.match(/(foo)\s+bar/)</span><br><span class="line">// [<span class="string">"foo bar"</span>, <span class="string">"foo"</span>]</span><br></pre></td></tr></table></figure>
+        
+          <p class="article-more-link">
+            <a href="/2020/05/11/%E6%AD%A3%E5%88%99/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">

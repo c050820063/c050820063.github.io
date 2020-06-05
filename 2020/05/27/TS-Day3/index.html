@@ -7,15 +7,15 @@
   
   <title>TS Day3 | Bin&#39;s Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="类 声明与创建 1234567891011121314151617class Person &amp;#123;  public sex: string  protected name: string &#x2F;&#x2F; 受保护属性，只能在类“Person”及其子类中访问  private age: number &#x2F;&#x2F; 私有属性，只能在类“Person”中访问  public constructor(name: str">
+  <meta name="description" content="类 声明与创建">
 <meta property="og:type" content="article">
 <meta property="og:title" content="TS Day3">
 <meta property="og:url" content="http://yoursite.com/2020/05/27/TS-Day3/index.html">
 <meta property="og:site_name" content="Bin&#39;s Hexo">
-<meta property="og:description" content="类 声明与创建 1234567891011121314151617class Person &amp;#123;  public sex: string  protected name: string &#x2F;&#x2F; 受保护属性，只能在类“Person”及其子类中访问  private age: number &#x2F;&#x2F; 私有属性，只能在类“Person”中访问  public constructor(name: str">
+<meta property="og:description" content="类 声明与创建">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-05-27T15:04:05.000Z">
-<meta property="article:modified_time" content="2020-05-29T06:31:31.218Z">
+<meta property="article:modified_time" content="2020-06-05T03:14:26.819Z">
 <meta property="article:author" content="bin">
 <meta name="twitter:card" content="summary">
   
@@ -90,6 +90,7 @@
       
         <h2 id="类"><a href="#类" class="headerlink" title="类"></a>类</h2><ol>
 <li><p>声明与创建</p>
+<a id="more"></a>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">class Person &#123;</span><br><span class="line">  public sex: string</span><br><span class="line">  protected name: string // 受保护属性，只能在类“Person”及其子类中访问</span><br><span class="line">  private age: number // 私有属性，只能在类“Person”中访问</span><br><span class="line">  public constructor(name: string, sex: string, age: number) &#123;</span><br><span class="line">    this.name = name</span><br><span class="line">    this.sex = sex</span><br><span class="line">    this.age = age</span><br><span class="line">  &#125;</span><br><span class="line">  public <span class="function"><span class="title">sayHello</span></span>() &#123;</span><br><span class="line">    console.log(<span class="string">'hello'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const person: Person = new Person(<span class="string">'joke'</span>, <span class="string">'男'</span>, 18)</span><br><span class="line">console.log(person) // &#123; name: <span class="string">'joke'</span>, sex: <span class="string">'男'</span>, age: 18 &#125;</span><br><span class="line">person.sayHello() // hello</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>继承与重写</p>
