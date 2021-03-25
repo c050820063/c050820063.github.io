@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>TS Day2 | Bin&#39;s Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="函数的定义 固定参数123function add(a:number, b:number): number &amp;#123;  return a + b&amp;#125;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TS Day2">
+<meta property="og:url" content="http://yoursite.com/2020/05/26/TS-Day2/index.html">
+<meta property="og:site_name" content="Bin&#39;s Hexo">
+<meta property="og:description" content="函数的定义 固定参数123function add(a:number, b:number): number &amp;#123;  return a + b&amp;#125;">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-05-26T14:16:21.000Z">
+<meta property="article:modified_time" content="2020-06-05T03:14:36.045Z">
+<meta property="article:author" content="bin">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Bin&#39;s Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Bin&#39;s Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-TS-Day2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/26/TS-Day2/" class="article-date">
+  <time datetime="2020-05-26T14:16:21.000Z" itemprop="datePublished">2020-05-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      TS Day2
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="函数的定义"><a href="#函数的定义" class="headerlink" title="函数的定义"></a>函数的定义</h2><ul>
+<li>固定参数<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> add(a:number, b:number): number &#123;</span><br><span class="line">  <span class="built_in">return</span> a + b</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a></li>
+<li>固定某些参数 ?<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> add(a:number, b:number, c:?number): number &#123;</span><br><span class="line">  <span class="built_in">let</span> sum:number = a + b</span><br><span class="line">  <span class="keyword">if</span> (c) sum += c</span><br><span class="line">  <span class="built_in">return</span> sum</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>不定参数<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> add(...arg:number[]): number &#123;</span><br><span class="line">  <span class="built_in">let</span> sum:number</span><br><span class="line">  <span class="keyword">for</span> (<span class="built_in">let</span> i = 0; i &lt; arg.length; i++) &#123;</span><br><span class="line">    sun += arg[i]</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">return</span> sum</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="引用类型-数组、字符串"><a href="#引用类型-数组、字符串" class="headerlink" title="引用类型(数组、字符串)"></a>引用类型(数组、字符串)</h2><ul>
+<li><p>数组</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">let</span> arr1:number[] = [1, 2]</span><br><span class="line"><span class="built_in">let</span> arr2:Array&lt;string&gt; = [<span class="string">'j'</span>, <span class="string">'s'</span>]</span><br><span class="line"><span class="built_in">let</span> arr3:Array&lt;boolean&gt; = new Array(<span class="literal">true</span>, <span class="literal">false</span>)</span><br><span class="line">// 元组</span><br><span class="line"><span class="built_in">let</span> arr4:[number, string] = [1, <span class="string">'js'</span>]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>字符串</p>
+</li>
+</ul>
+<ol>
+<li>构造函数<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">let</span> s1:String = new String(<span class="string">'s'</span>)</span><br></pre></td></tr></table></figure></li>
+<li>字面量<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">let</span> s2:string = <span class="string">'s'</span></span><br></pre></td></tr></table></figure></li>
+<li>replace indexOf lastIndexOf<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">let</span> s3:string = <span class="string">'hello world'</span></span><br><span class="line">s3.replace(<span class="string">'world'</span>, <span class="string">'re'</span>) // <span class="string">'hello re'</span></span><br><span class="line">s3.indexOf(<span class="string">'world'</span>) // 6</span><br><span class="line">s3.lastIndexOf(<span class="string">'o'</span>) // 7</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="日期类型"><a href="#日期类型" class="headerlink" title="日期类型"></a>日期类型</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">let</span> d:Date = new Date()</span><br></pre></td></tr></table></figure>
+
+<h2 id="正则"><a href="#正则" class="headerlink" title="正则"></a>正则</h2><ol>
+<li>声明<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">let</span> reg1:RegExp = new Reg(<span class="string">'hello'</span>, <span class="string">'gi'</span>) // 构造函数声明</span><br><span class="line"><span class="built_in">let</span> reg2:RegExp = /world/gi</span><br></pre></td></tr></table></figure></li>
+<li>test、exec方法<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">reg1.test(<span class="string">'hello world'</span>) // <span class="literal">true</span></span><br><span class="line">reg2.exec(<span class="string">'hello world'</span>) // [<span class="string">"hello"</span>, index: 0, input: <span class="string">"hello world"</span>, groups: undefined]</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/05/26/TS-Day2/" data-id="ckmo8p0n10003hele0u1728vr" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/05/27/TS-Day3/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          TS Day3
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/05/25/TS-Day1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">TS Day1</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/12/23/QianKun-%E5%BE%AE%E5%89%8D%E7%AB%AF/">QianKun 微前端</a>
+          </li>
+        
+          <li>
+            <a href="/2020/11/24/Git%E5%B8%B8%E7%94%A8%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">Git常用基本操作</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/21/React%20Hooks/">React Hooks</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/19/utils/">utils</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/07/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%EF%BC%88Vue%E7%AF%87%EF%BC%89/">移动端适配（Vue篇）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 bin<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

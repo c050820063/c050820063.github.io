@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>TS Day3 | Bin&#39;s Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="类 声明与创建">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TS Day3">
+<meta property="og:url" content="http://yoursite.com/2020/05/27/TS-Day3/index.html">
+<meta property="og:site_name" content="Bin&#39;s Hexo">
+<meta property="og:description" content="类 声明与创建">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-05-27T15:04:05.000Z">
+<meta property="article:modified_time" content="2020-06-05T03:14:26.819Z">
+<meta property="article:author" content="bin">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Bin&#39;s Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Bin&#39;s Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-TS-Day3" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/27/TS-Day3/" class="article-date">
+  <time datetime="2020-05-27T15:04:05.000Z" itemprop="datePublished">2020-05-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      TS Day3
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="类"><a href="#类" class="headerlink" title="类"></a>类</h2><ol>
+<li><p>声明与创建</p>
+<a id="more"></a>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">class Person &#123;</span><br><span class="line">  public sex: string</span><br><span class="line">  protected name: string // 受保护属性，只能在类“Person”及其子类中访问</span><br><span class="line">  private age: number // 私有属性，只能在类“Person”中访问</span><br><span class="line">  public constructor(name: string, sex: string, age: number) &#123;</span><br><span class="line">    this.name = name</span><br><span class="line">    this.sex = sex</span><br><span class="line">    this.age = age</span><br><span class="line">  &#125;</span><br><span class="line">  public <span class="function"><span class="title">sayHello</span></span>() &#123;</span><br><span class="line">    console.log(<span class="string">'hello'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const person: Person = new Person(<span class="string">'joke'</span>, <span class="string">'男'</span>, 18)</span><br><span class="line">console.log(person) // &#123; name: <span class="string">'joke'</span>, sex: <span class="string">'男'</span>, age: 18 &#125;</span><br><span class="line">person.sayHello() // hello</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>继承与重写</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">class Nan extends Person &#123;</span><br><span class="line">  public height: number</span><br><span class="line"></span><br><span class="line">  public constructor(name: string, sex: string, age: number, height: number) &#123;</span><br><span class="line">    super(name, sex, age)</span><br><span class="line">    this.height = height</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  public <span class="function"><span class="title">interest</span></span>() &#123;</span><br><span class="line">    console.log(<span class="string">'看书'</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  public <span class="function"><span class="title">sayHello</span></span>() &#123;</span><br><span class="line">    super.sayHello()</span><br><span class="line">    console.log(<span class="string">'world'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const nan: Nan = new Nan(<span class="string">'jc'</span>, <span class="string">'男'</span>, 22, 168)</span><br><span class="line">console.log(nan) // &#123; name: <span class="string">'jc'</span>, sex: <span class="string">'男'</span>, age: 22, height: 168 &#125;</span><br><span class="line">nan.interest() // 看书</span><br><span class="line">nan.sayHello() //hello world</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">interface Cat &#123;</span><br><span class="line">  name?: string,</span><br><span class="line">  pinzhong: string,</span><br><span class="line">  cry(): void</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const cat: Cat = &#123;</span><br><span class="line">  name: <span class="string">'nangua'</span>,</span><br><span class="line">  pinzhong: <span class="string">'gouzi'</span>,</span><br><span class="line">  <span class="function"><span class="title">cry</span></span> () &#123;</span><br><span class="line">    console.log(<span class="string">'en'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/05/27/TS-Day3/" data-id="ckmo8p0n50006hele5d528kbh" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/05/29/%E5%8E%9F%E5%9E%8B%E9%93%BE/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          原型链
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/05/26/TS-Day2/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">TS Day2</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/12/23/QianKun-%E5%BE%AE%E5%89%8D%E7%AB%AF/">QianKun 微前端</a>
+          </li>
+        
+          <li>
+            <a href="/2020/11/24/Git%E5%B8%B8%E7%94%A8%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">Git常用基本操作</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/21/React%20Hooks/">React Hooks</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/19/utils/">utils</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/07/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%EF%BC%88Vue%E7%AF%87%EF%BC%89/">移动端适配（Vue篇）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 bin<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>babel | Bin&#39;s Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="@babel&#x2F;coreBabel的核心模块  安装1npm i -D @babel&#x2F;core">
+<meta property="og:type" content="article">
+<meta property="og:title" content="babel">
+<meta property="og:url" content="http://yoursite.com/2020/06/17/babel/index.html">
+<meta property="og:site_name" content="Bin&#39;s Hexo">
+<meta property="og:description" content="@babel&#x2F;coreBabel的核心模块  安装1npm i -D @babel&#x2F;core">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-06-17T08:18:58.000Z">
+<meta property="article:modified_time" content="2020-12-21T01:25:27.949Z">
+<meta property="article:author" content="bin">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Bin&#39;s Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Bin&#39;s Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-babel" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/06/17/babel/" class="article-date">
+  <time datetime="2020-06-17T08:18:58.000Z" itemprop="datePublished">2020-06-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      babel
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="babel-core"><a href="#babel-core" class="headerlink" title="@babel/core"></a>@babel/core</h3><p>Babel的核心模块</p>
+<ul>
+<li>安装<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i -D @babel/core</span><br></pre></td></tr></table></figure>
+<a id="more"></a></li>
+<li>使用</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const babel &#x3D; require(&#39;@babel&#x2F;core&#39;);</span><br><span class="line">babel.transform(&quot;code&quot;, options);</span><br></pre></td></tr></table></figure>
+
+<h3 id="babel-cli"><a href="#babel-cli" class="headerlink" title="@babel/cli"></a>@babel/cli</h3><p>终端运行工具, 内置的插件, 可以在终端使用babel的工具</p>
+<ul>
+<li>安装<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i -D @babel/cli</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="用法一"><a href="#用法一" class="headerlink" title="用法一"></a>用法一</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./node_modules/.bin/babel src --out-dir lib</span><br></pre></td></tr></table></figure>
+<p>这段语句的意思是: 它使用我们设置的解析方式来解析src目录下的所有JS文件, 并将转换后的每个文件都输出到lib目录下.</p>
+<p>如果是 <code>npm@5.2.0</code> 就可以使用：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx babel src --out-dir lib</span><br></pre></td></tr></table></figure>
+
+<h4 id="用法二"><a href="#用法二" class="headerlink" title="用法二"></a>用法二</h4><p>给package.json中配置一段脚本命令:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"name"</span>: <span class="string">"babel-basic"</span>,</span><br><span class="line">    <span class="string">"version"</span>: <span class="string">"1.0.0"</span>,</span><br><span class="line">    <span class="string">"description"</span>: <span class="string">""</span>,</span><br><span class="line">    <span class="string">"main"</span>: <span class="string">"index.js"</span>,</span><br><span class="line">    <span class="string">"scripts"</span>: &#123;</span><br><span class="line">+       <span class="string">"build"</span>: <span class="string">"babel src -d lib"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">"keywords"</span>: [],</span><br><span class="line">    <span class="string">"author"</span>: <span class="string">""</span>,</span><br><span class="line">    <span class="string">"license"</span>: <span class="string">"ISC"</span>,</span><br><span class="line">    <span class="string">"devDependencies"</span>: &#123;</span><br><span class="line">+       <span class="string">"@babel/cli"</span>: <span class="string">"^7.8.4"</span>,</span><br><span class="line">+       <span class="string">"@babel/core"</span>: <span class="string">"^7.8.4"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>现在运行npm run build效果也是一样的, -d是–out-dir的缩写…<br>(使用上面的 –out-dir 选项。也可以通过使用 –help 运行它来查看 cli 工具接受的其余选项。但对我们来说最重要的是 –plugins 和 –presets。)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx babel --<span class="built_in">help</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="插件plugins"><a href="#插件plugins" class="headerlink" title="插件plugins"></a>插件plugins</h3><ul>
+<li>基本概念<br>本质就是一个JS程序, 指示着Babel如何对代码进行转换.<br>如果你是要将ES6+转成ES5, 可以依赖官方插件, 例如:<br>@babel/plugin-transform-arrow-functions</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cnpm i --save-dev @babel/plugin-transform-arrow-functions</span><br><span class="line">npx babel src --out-dir lib --plugins=@babel/plugin-transform-arrow-functions</span><br></pre></td></tr></table></figure>
+
+<p>插件的作用是将箭头函数转换为ES5兼容的函数</p>
+<h3 id="Presets"><a href="#Presets" class="headerlink" title="Presets:"></a>Presets:</h3><ul>
+<li><p>基本概念<br>如果想要转换ES6+的其它代码为ES5, 可以使用”preset”来代替预先设定的一组插件, 而不是逐一添加我们想要的所有插件.<br><code>可以理解为一个preset就是一组插件的集合</code></p>
+</li>
+<li><p>@babel/preset-env</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i --save-dev @babel/preset-env</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>envpreset这个preset包括支持现代JavaScript(ES6+)的所有插件.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx babel src --out-dir lib --presets=@babel/preset-env</span><br></pre></td></tr></table></figure>
+
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>创建一个babel.config.js文件:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">const presets = [</span><br><span class="line">	[</span><br><span class="line">    <span class="string">"@babel/env"</span>,</span><br><span class="line">    &#123;</span><br><span class="line">      targets: &#123;</span><br><span class="line">        edge: <span class="string">"17"</span>,</span><br><span class="line">        chrome: <span class="string">"64"</span>,</span><br><span class="line">        firefox: <span class="string">"60"</span>,</span><br><span class="line">        safari: <span class="string">"11.1"</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]	</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">module.exports = &#123; presets &#125;;</span><br></pre></td></tr></table></figure>
+
+<p>加上这个配置的作用是:</p>
+<ul>
+<li>使用了envpreset这个preset</li>
+<li>envpreset只会为目标浏览器中没有的功能加载转换插件</li>
+</ul>
+<p>package.json:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="string">"scripts"</span>: &#123;</span><br><span class="line">		<span class="string">"build"</span>: <span class="string">"babel src -d lib"</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>执行 npm run build 即可</p>
+<p>这个命令行语句看起来并没有修改, 那是因为它默认会去寻找跟根目录下的一个名为babel.config.js的文件(或者babelrc.js也可以), 所以其实就相当于以下这个配置:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="string">"scripts"</span>: &#123;</span><br><span class="line">		<span class="string">"build"</span>: <span class="string">"babel src -d lib --config-file ./babel.config.js"</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>(–config-file指令就类似于webpack中的–config, 用于指定以哪个配置文件构建)</p>
+<p>targets: 只会为目标浏览器中没有的功能加载转换插件</p>
+<p>例如我这里配置的其中一项是edge: “17”, 那就表示它转换之后的代码支持到edge17.</p>
+<p>所以上面babel.config.js的配置之后生成的lib文件夹下的代码好像并没有发生什么改变, 也就是它并没有被转换成ES5的代码</p>
+<figure class="highlight plain"><figcaption><span>所以它就没有必要将其转换了, 它只会为目标浏览器中没有的功能加载转换插件!!! ```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">将edge17改成edge10：</span><br><span class="line"></span><br><span class="line">babel.config.js:</span><br><span class="line">&#96;&#96;&#96; bash</span><br><span class="line">const presets &#x3D; [</span><br><span class="line">    [</span><br><span class="line">        &quot;@babel&#x2F;env&quot;,</span><br><span class="line">        &#123;</span><br><span class="line">            targets: &#123;</span><br><span class="line">-               edge: &quot;17&quot;,</span><br><span class="line">+               edge: &quot;10&quot;,</span><br><span class="line">                firefox: &quot;60&quot;,</span><br><span class="line">                chrome: &quot;67&quot;,</span><br><span class="line">                safari: &quot;11.1&quot;,</span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;,</span><br><span class="line">    ],</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">module.exports &#x3D; &#123; presets &#125;;</span><br></pre></td></tr></table></figure>
+<p>保存重新运行npm run build, 会发现lib/index.js现在有所改变了</p>
+<h3 id="Polyfill"><a href="#Polyfill" class="headerlink" title="Polyfill"></a>Polyfill</h3><p>Plugins是提供的插件, 例如箭头函数转普通函数@babel/plugin-transform-arrow-functions</p>
+<p>Presets是一组Plugins的集合.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">就像现在你想在edge10浏览器中使用ES7中的方法includes(), 但是我们知道这个版本的浏览器环境是不支持你使用这个方法的, 所以如果你强行使用并不能达到预期的效果.</span><br><span class="line">而polyfill的作用正是如此, 知道你的环境不允许, 那就帮你引用一个这个环境, 也就是说此时编译后的代码就会变成这样:</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96; bash</span><br><span class="line">&#x2F;&#x2F; 原来的代码</span><br><span class="line">var hasTwo &#x3D; [1, 2, 3].includes(2);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 加了polyfill之后的代码</span><br><span class="line">require(&quot;core-js&#x2F;modules&#x2F;es7.array.includes&quot;);</span><br><span class="line">require(&quot;core-js&#x2F;modules&#x2F;es6.string.includes&quot;);</span><br><span class="line">var hasTwo &#x3D; [1, 2, 3].includes(2);</span><br></pre></td></tr></table></figure>
+
+<p>现在就让我们来学习一个重要的polyfill, 它就是@babel/polyfill.</p>
+<p>@babel/polyfill用来模拟完成ES6+环境:</p>
+<ul>
+<li>可以使用像Promise或者WeakMap这样的新内置函数</li>
+<li>可以使用像Array.from或者Object.assign这样的静态方法</li>
+<li>可以使用像Array.prototype.includes这样的实例方法</li>
+<li>generator函数</li>
+</ul>
+<p>为了实现这一点, Polyfill增加了全局范围以及像String这样的原生原型.</p>
+<p>而@babel/polyfill模块包括了core-js和自定义regenerator runtime</p>
+<p>对于库/工具来说, 如果你不需要像Array.prototype.includes这样的实例方法, 可以使用transform runtime插件, 而不是使用污染全局的@babel/polyfill.</p>
+<p>对于应用程序, 我们建议安装使用@babel/polyfill</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm i --save @babel/polyfill</span><br></pre></td></tr></table></figure>
+<p>(注意 –save 选项而不是 –save-dev，因为这是一个需要在源代码之前运行的 polyfill。)</p>
+<p>但是由于我们使用的是envpreset, 这里个配置中有一个叫做 “useBuiltIns”的选项</p>
+<p>如果将这个选择设置为”usage”, 就只包括你需要的polyfill</p>
+<p>此时的babel.config.js调整为:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">const presets = [</span><br><span class="line">	[</span><br><span class="line">		<span class="string">"@babel/env"</span>,</span><br><span class="line">		&#123;</span><br><span class="line">			targets: &#123;</span><br><span class="line">				edge: <span class="string">"17"</span>,</span><br><span class="line">				chrome: <span class="string">"64"</span>,</span><br><span class="line">				firefox: <span class="string">"67"</span>,</span><br><span class="line">				safari: <span class="string">'11.1'</span></span><br><span class="line">			&#125;,</span><br><span class="line">+			useBuiltIns: <span class="string">"usage"</span></span><br><span class="line">		&#125;</span><br><span class="line">	]</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">module.exports = &#123; presets &#125;</span><br></pre></td></tr></table></figure>
+
+<p>安装配置了@babel/polyfill, Babel将检查你的所有代码, 然后查找目标环境中缺少的功能, 并引入仅包含所需的polyfill</p>
+<p>(如果我们没有将 env preset 的 “useBuiltIns” 选项的设置为 “usage” ，就必须在其他代码之前 require 一次完整的 polyfill。)</p>
+<h3 id="corejs"><a href="#corejs" class="headerlink" title="corejs"></a>corejs</h3><p>被deprecated的@babel/polyfill</p>
+<p>上面我介绍了一种名为@babel/polyfill的polypill, 其实它在Babel7.4.0以上已经不被推荐使用了.</p>
+<p>而是推荐使用core-js@3+@babel/preset-env然后设置@babel/preset-env的corejs选项为3.</p>
+<p>因此如果你按着我文章中讲方式使用@babel/polyfill, 是可以实现的, 不过控制台中会抛出一个警告⚠️</p>
+<p>解决办法是卸载掉@babel/polyfill, 然后重新安装core-js@版本号, 然后重新配置一些babel.config.js文件.</p>
+<ol>
+<li>安装core-js@3:<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm i --save core-js@3</span><br></pre></td></tr></table></figure></li>
+<li>添加corejs选项:<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">const presets = [</span><br><span class="line">[</span><br><span class="line">  <span class="string">"@babel/env"</span>,</span><br><span class="line">      &#123;</span><br><span class="line">        targets: &#123;</span><br><span class="line">        edge: <span class="string">"17"</span>,</span><br><span class="line">        chrome: <span class="string">"64"</span>,</span><br><span class="line">        firefox: <span class="string">"67"</span>,</span><br><span class="line">        safari: <span class="string">'11.1'</span></span><br><span class="line">      &#125;,</span><br><span class="line">      useBuiltIns: <span class="string">"usage"</span>,</span><br><span class="line">+     corejs: 3</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">module.exports = &#123; presets &#125;</span><br></pre></td></tr></table></figure>
+现在重新npm run build之后就不会有这个警告了, 而且生成的lib也是正确的.</li>
+</ol>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><ul>
+<li>babel/cli 允许我们从终端运行Babel</li>
+<li>envpreset 只包含我们使用的功能的转换,实现我们的目标浏览器中缺少的功能</li>
+<li>@babel/polyfill实现所有新的JS功能, 为目标浏览器引入缺少的环境(但是Babel7.4.0以上推荐使用corejs)</li>
+</ul>
+<p><a href="https://juejin.im/post/5e477139f265da574c566dda" target="_blank" rel="noopener">参考</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/06/17/babel/" data-id="ckmo8p0n60007hele0fyz2bt6" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/08/07/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%EF%BC%88Vue%E7%AF%87%EF%BC%89/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          移动端适配（Vue篇）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/06/04/Vue3%20study/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Vue3 study</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/12/23/QianKun-%E5%BE%AE%E5%89%8D%E7%AB%AF/">QianKun 微前端</a>
+          </li>
+        
+          <li>
+            <a href="/2020/11/24/Git%E5%B8%B8%E7%94%A8%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">Git常用基本操作</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/21/React%20Hooks/">React Hooks</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/19/utils/">utils</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/07/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%EF%BC%88Vue%E7%AF%87%EF%BC%89/">移动端适配（Vue篇）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 bin<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

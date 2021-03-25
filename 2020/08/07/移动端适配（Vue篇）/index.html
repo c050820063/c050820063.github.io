@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>移动端适配（Vue篇） | Bin&#39;s Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="vw适配 安装依赖1npm i postcss-aspect-ratio-mini postcss-px-to-viewport postcss-write-svg postcss-cssnext postcss-viewport-units cssnano --save">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动端适配（Vue篇）">
+<meta property="og:url" content="http://yoursite.com/2020/08/07/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%EF%BC%88Vue%E7%AF%87%EF%BC%89/index.html">
+<meta property="og:site_name" content="Bin&#39;s Hexo">
+<meta property="og:description" content="vw适配 安装依赖1npm i postcss-aspect-ratio-mini postcss-px-to-viewport postcss-write-svg postcss-cssnext postcss-viewport-units cssnano --save">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-08-07T09:09:57.000Z">
+<meta property="article:modified_time" content="2020-08-14T06:56:40.471Z">
+<meta property="article:author" content="bin">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Bin&#39;s Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Bin&#39;s Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-移动端适配（Vue篇）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/08/07/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%EF%BC%88Vue%E7%AF%87%EF%BC%89/" class="article-date">
+  <time datetime="2020-08-07T09:09:57.000Z" itemprop="datePublished">2020-08-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      移动端适配（Vue篇）
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="vw适配"><a href="#vw适配" class="headerlink" title="vw适配"></a>vw适配</h3><ol>
+<li>安装依赖<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i postcss-aspect-ratio-mini postcss-px-to-viewport postcss-write-svg postcss-cssnext postcss-viewport-units cssnano --save</span><br></pre></td></tr></table></figure>
+<a id="more"></a></li>
+<li>在.postcssrc.js中进行配置<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">  <span class="string">"plugins"</span>: &#123;</span><br><span class="line">    <span class="string">"postcss-import"</span>: &#123;&#125;,</span><br><span class="line">    <span class="string">"postcss-url"</span>: &#123;&#125;,</span><br><span class="line">    <span class="string">"postcss-aspect-ratio-mini"</span>: &#123;&#125;,</span><br><span class="line">    <span class="string">"postcss-write-svg"</span>: &#123;</span><br><span class="line">      utf8: <span class="literal">false</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">"postcss-cssnext"</span>: &#123;&#125;,</span><br><span class="line">    <span class="string">"postcss-px-to-viewport"</span>: &#123;</span><br><span class="line">      viewportWidth: 750, // 视窗的宽度，对应的是我们设计稿的宽度，一般是750</span><br><span class="line">      viewportHeight: 1334, // 视窗的高度，根据750设备的宽度来指定，一般指定1334，也可以不配置</span><br><span class="line">      unitPrecision: 3, // 指定`px`转换为视窗单位值的小数位数</span><br><span class="line">      viewportUnit: <span class="string">"vw"</span>, //指定需要转换成的视窗单位，建议使用vw</span><br><span class="line">      selectorBlackList: [<span class="string">'.ignore'</span>, <span class="string">'.hairlines'</span>],// 指定不转换为视窗单位的类，可以自定义，可以无限添加,建议定义一至两个通用的类名</span><br><span class="line">      minPixelValue: 1, // 小于或等于`1px`不转换为视窗单位，你也可以设置为你想要的值</span><br><span class="line">      mediaQuery: <span class="literal">false</span> // 允许在媒体查询中转换`px`</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">"postcss-viewport-units"</span>: &#123;&#125;,</span><br><span class="line">    <span class="string">"cssnano"</span>: &#123;</span><br><span class="line">      preset: <span class="string">"advanced"</span>,</span><br><span class="line">      autoprefixer: <span class="literal">false</span>,</span><br><span class="line">      <span class="string">"postcss-zindex"</span>: <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ul>
+<li><p>postcss-cssnext：其实就是cssnext。该插件可以让我们使用CSS未来的特性，其会对这些特性做相关的兼容性处理。有关于cssnext的每个特性的操作文档，可以点击这里浏览。</p>
+</li>
+<li><p>cssnano：主要用来压缩和清理CSS代码。在Webpack中，cssnano和css-loader捆绑在一起，所以不需要自己加载它。详细文档可以点击这里获取。在cssnano的配置中，使用了preset: “advanced”，所以我们需要另外安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm i cssnano-preset-advanced --save-dev</span><br><span class="line"><span class="string">"cssnano"</span>: &#123;</span><br><span class="line">  <span class="string">"autoprefixer"</span>: <span class="literal">false</span>,</span><br><span class="line">  <span class="string">"postcss-zindex"</span>: <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>上面的代码把autoprefixer和postcss-zindex禁掉了。前者是有重复调用，后者是一个讨厌的东东。只要启用了这个插件，z-index的值就会重置为1。这是一个天坑，千万记得将postcss-zindex设置为false。</p>
+</li>
+<li><p>postcss-px-to-viewport：要用来把px单位转换为vw、vh、vmin或者vmax这样的视窗单位，也是vw适配方案的核心插件之一。在配置中需要配置相关的几个关键参数：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"postcss-px-to-viewport"</span>: &#123;</span><br><span class="line">  viewportWidth: 750,   // 视窗的宽度，对应的是我们设计稿的宽度，一般是750 （如果我们设置的宽度是300px，那么编译之后的宽度为(300/750*100)=40vw,如果频宽实际为375px，那么该元素的宽度为（375*0.4）= 150px）</span><br><span class="line">  viewportHeight: 1334, // 视窗的高度，根据750设备的宽度来指定，一般指定1334，也可以不配置</span><br><span class="line">  unitPrecision: 3,     // 指定`px`转换为视窗单位值的小数位数（很多时候无法整除）</span><br><span class="line">  viewportUnit: <span class="string">"vw"</span>,   // 指定需要转换成的视窗单位，建议使用vw</span><br><span class="line">  selectorBlackList: [<span class="string">'.ignore'</span>, <span class="string">'.hairlines'</span>],// 指定不转换为视窗单位的类，可以自定义，可以无限添加,建议定义一至两个通用的类名</span><br><span class="line">  minPixelValue: 1,     // 小于或等于`1px`不转换为视窗单位，你也可以设置为你想要的值</span><br><span class="line">  mediaQuery: <span class="literal">false</span>     // 允许在媒体查询中转换`px`</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></li>
+<li><p>postcss-aspect-ratio-mini：主要用来处理元素容器宽高比。</p>
+</li>
+<li><p>postcss-write-svg：插件主要用来处理移动端1px的解决方案。该插件主要使用的是border-image和background来做1px的相关处理。</p>
+</li>
+</ul>
+<p><a href="https://www.jianshu.com/p/686b61c4a43d" target="_blank" rel="noopener">参考</a></p>
+<h3 id="rem"><a href="#rem" class="headerlink" title="rem"></a>rem</h3><ol>
+<li>在main中添加代码<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">  // 在标准 375px 适配下，100px = 1rem;</span><br><span class="line">  var baseFontSize = 100;  </span><br><span class="line">  var baseWidth = 375;</span><br><span class="line"></span><br><span class="line">  var <span class="built_in">set</span> = <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">    var clientWidth = document.documentElement.clientWidth || window.innerWidth;</span><br><span class="line"></span><br><span class="line">    var rem = 100;</span><br><span class="line">    <span class="keyword">if</span> (clientWidth != baseWidth) &#123;</span><br><span class="line">      rem = Math.floor(clientWidth / baseWidth * baseFontSize);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    document.querySelector(<span class="string">'html'</span>).style.fontSize = rem + <span class="string">'px'</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">set</span>();</span><br><span class="line"></span><br><span class="line">  window.addEventListener(<span class="string">'resize'</span>, <span class="built_in">set</span>);</span><br><span class="line">&#125;());</span><br></pre></td></tr></table></figure></li>
+<li>修改.postcssrc.js配置<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm i postcss-pxtorem --sav-dev // 安装pxtorem插件</span><br><span class="line"><span class="string">"postcss-pxtorem"</span>: &#123;</span><br><span class="line">  <span class="string">"rootValue"</span>: 100,</span><br><span class="line">  <span class="string">"propList"</span>: [<span class="string">'font'</span>, <span class="string">'font-size'</span>, <span class="string">'line-height'</span>, <span class="string">'letter-spacing'</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>rootValue 基数； 例：rootValue为100 则1px转换为0.01rem</li>
+<li>proplist就是那些属性需要转换成rem。 倘若默认为整个项目，则值为：propList:[“*”]</li>
+</ul>
+</li>
+</ol>
+<h3 id="lib-flexible"><a href="#lib-flexible" class="headerlink" title="lib-flexible"></a>lib-flexible</h3><ol>
+<li><p>安装插件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i lib-flexible --save // 安装lib-flexible</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>main.js 引入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import <span class="string">'lib-flexible/flexible'</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在 index.html 中添加：移动适配 meta标签</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"width=device-width,initial-scale=1.0"</span>&gt;</span><br><span class="line">// 注意这两个的区别，建议添加下面的meta，反正点击输入框，页面自动缩放</span><br><span class="line">&lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"</span>&gt;</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>修改.postcssrc.js配置<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm i postcss-pxtorem --sav-dev // 安装pxtorem插件</span><br><span class="line"><span class="string">"postcss-pxtorem"</span>: &#123;</span><br><span class="line">  <span class="string">"rootValue"</span>: 75, //设计稿除以10得到的值</span><br><span class="line">  <span class="string">"propList"</span>: [<span class="string">"*"</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/08/07/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%EF%BC%88Vue%E7%AF%87%EF%BC%89/" data-id="ckmo8p0ne000cheleak64dhrw" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/08/19/utils/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          utils
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/06/17/babel/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">babel</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/12/23/QianKun-%E5%BE%AE%E5%89%8D%E7%AB%AF/">QianKun 微前端</a>
+          </li>
+        
+          <li>
+            <a href="/2020/11/24/Git%E5%B8%B8%E7%94%A8%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">Git常用基本操作</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/21/React%20Hooks/">React Hooks</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/19/utils/">utils</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/07/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%EF%BC%88Vue%E7%AF%87%EF%BC%89/">移动端适配（Vue篇）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 bin<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
